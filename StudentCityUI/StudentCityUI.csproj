@@ -1,0 +1,1079 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\images\404.png" />
+    <Content Remove="wwwroot\images\arrow-black-left.png" />
+    <Content Remove="wwwroot\images\arrow-black-right.png" />
+    <Content Remove="wwwroot\images\arrow-left-active.png" />
+    <Content Remove="wwwroot\images\arrow-left.png" />
+    <Content Remove="wwwroot\images\arrow-right-active.png" />
+    <Content Remove="wwwroot\images\arrow-right.png" />
+    <Content Remove="wwwroot\images\arrow-top.png" />
+    <Content Remove="wwwroot\images\award1.jpg" />
+    <Content Remove="wwwroot\images\award2.jpg" />
+    <Content Remove="wwwroot\images\award3.jpg" />
+    <Content Remove="wwwroot\images\award4.jpg" />
+    <Content Remove="wwwroot\images\banner2.jpg" />
+    <Content Remove="wwwroot\images\banner6.jpg" />
+    <Content Remove="wwwroot\images\banner7.jpg" />
+    <Content Remove="wwwroot\images\breadbg1.jpg" />
+    <Content Remove="wwwroot\images\btn1-bg.jpg" />
+    <Content Remove="wwwroot\images\btn2-bg.jpg" />
+    <Content Remove="wwwroot\images\cell-icon.png" />
+    <Content Remove="wwwroot\images\chef1.png" />
+    <Content Remove="wwwroot\images\chef2.png" />
+    <Content Remove="wwwroot\images\chef3.png" />
+    <Content Remove="wwwroot\images\chef4.png" />
+    <Content Remove="wwwroot\images\chef5.png" />
+    <Content Remove="wwwroot\images\client1.png" />
+    <Content Remove="wwwroot\images\client2.png" />
+    <Content Remove="wwwroot\images\client3.png" />
+    <Content Remove="wwwroot\images\client4.png" />
+    <Content Remove="wwwroot\images\client5.png" />
+    <Content Remove="wwwroot\images\clock-icon.png" />
+    <Content Remove="wwwroot\images\close-blue.png" />
+    <Content Remove="wwwroot\images\close.png" />
+    <Content Remove="wwwroot\images\comment-img1.png" />
+    <Content Remove="wwwroot\images\comment.png" />
+    <Content Remove="wwwroot\images\comment1.png" />
+    <Content Remove="wwwroot\images\complete-sign.png" />
+    <Content Remove="wwwroot\images\delete.png" />
+    <Content Remove="wwwroot\images\direction-left-active.png" />
+    <Content Remove="wwwroot\images\direction-left.png" />
+    <Content Remove="wwwroot\images\direction-right-active.png" />
+    <Content Remove="wwwroot\images\direction-right.png" />
+    <Content Remove="wwwroot\images\dummy.png" />
+    <Content Remove="wwwroot\images\feature1.jpg" />
+    <Content Remove="wwwroot\images\feature2.jpg" />
+    <Content Remove="wwwroot\images\feature3.jpg" />
+    <Content Remove="wwwroot\images\find-us.png" />
+    <Content Remove="wwwroot\images\fon.png" />
+    <Content Remove="wwwroot\images\footer-logo.png" />
+    <Content Remove="wwwroot\images\gradient-bg.png" />
+    <Content Remove="wwwroot\images\icon-basket-blue.png" />
+    <Content Remove="wwwroot\images\icon-basket.png" />
+    <Content Remove="wwwroot\images\icon-table-blue.png" />
+    <Content Remove="wwwroot\images\icon-table.png" />
+    <Content Remove="wwwroot\images\icon-zoom-blue.png" />
+    <Content Remove="wwwroot\images\icon-zoom.png" />
+    <Content Remove="wwwroot\images\icon1.png" />
+    <Content Remove="wwwroot\images\icon10.png" />
+    <Content Remove="wwwroot\images\icon11.png" />
+    <Content Remove="wwwroot\images\icon12.png" />
+    <Content Remove="wwwroot\images\icon13.png" />
+    <Content Remove="wwwroot\images\icon14.png" />
+    <Content Remove="wwwroot\images\icon15.png" />
+    <Content Remove="wwwroot\images\icon16.png" />
+    <Content Remove="wwwroot\images\icon17.png" />
+    <Content Remove="wwwroot\images\icon18.png" />
+    <Content Remove="wwwroot\images\icon19.png" />
+    <Content Remove="wwwroot\images\icon2.png" />
+    <Content Remove="wwwroot\images\icon20.png" />
+    <Content Remove="wwwroot\images\icon21.png" />
+    <Content Remove="wwwroot\images\icon22.png" />
+    <Content Remove="wwwroot\images\icon23.png" />
+    <Content Remove="wwwroot\images\icon24.png" />
+    <Content Remove="wwwroot\images\icon25.png" />
+    <Content Remove="wwwroot\images\icon26.png" />
+    <Content Remove="wwwroot\images\icon27.png" />
+    <Content Remove="wwwroot\images\icon28.png" />
+    <Content Remove="wwwroot\images\icon3.png" />
+    <Content Remove="wwwroot\images\icon31.png" />
+    <Content Remove="wwwroot\images\icon32.png" />
+    <Content Remove="wwwroot\images\icon33.png" />
+    <Content Remove="wwwroot\images\icon34.png" />
+    <Content Remove="wwwroot\images\icon35.png" />
+    <Content Remove="wwwroot\images\icon36.png" />
+    <Content Remove="wwwroot\images\icon37.png" />
+    <Content Remove="wwwroot\images\icon38.png" />
+    <Content Remove="wwwroot\images\icon39.png" />
+    <Content Remove="wwwroot\images\icon4.png" />
+    <Content Remove="wwwroot\images\icon40.png" />
+    <Content Remove="wwwroot\images\icon41.png" />
+    <Content Remove="wwwroot\images\icon5.png" />
+    <Content Remove="wwwroot\images\icon6.png" />
+    <Content Remove="wwwroot\images\icon7.png" />
+    <Content Remove="wwwroot\images\icon8.png" />
+    <Content Remove="wwwroot\images\icon9.png" />
+    <Content Remove="wwwroot\images\img10.png" />
+    <Content Remove="wwwroot\images\img11.png" />
+    <Content Remove="wwwroot\images\img12.png" />
+    <Content Remove="wwwroot\images\img13.png" />
+    <Content Remove="wwwroot\images\img14.png" />
+    <Content Remove="wwwroot\images\img15.png" />
+    <Content Remove="wwwroot\images\img16.png" />
+    <Content Remove="wwwroot\images\img17.png" />
+    <Content Remove="wwwroot\images\img18.png" />
+    <Content Remove="wwwroot\images\img19.png" />
+    <Content Remove="wwwroot\images\img2.png" />
+    <Content Remove="wwwroot\images\img20.png" />
+    <Content Remove="wwwroot\images\img21.png" />
+    <Content Remove="wwwroot\images\img22.png" />
+    <Content Remove="wwwroot\images\img23.png" />
+    <Content Remove="wwwroot\images\img24.png" />
+    <Content Remove="wwwroot\images\img25.png" />
+    <Content Remove="wwwroot\images\img26.png" />
+    <Content Remove="wwwroot\images\img27.jpg" />
+    <Content Remove="wwwroot\images\img28.jpg" />
+    <Content Remove="wwwroot\images\img29.jpg" />
+    <Content Remove="wwwroot\images\img3.png" />
+    <Content Remove="wwwroot\images\img30.jpg" />
+    <Content Remove="wwwroot\images\img31.jpg" />
+    <Content Remove="wwwroot\images\img32.jpg" />
+    <Content Remove="wwwroot\images\img36.png" />
+    <Content Remove="wwwroot\images\img37.jpg" />
+    <Content Remove="wwwroot\images\img38.jpg" />
+    <Content Remove="wwwroot\images\img39.jpg" />
+    <Content Remove="wwwroot\images\img4.png" />
+    <Content Remove="wwwroot\images\img40.jpg" />
+    <Content Remove="wwwroot\images\img41.png" />
+    <Content Remove="wwwroot\images\img42.png" />
+    <Content Remove="wwwroot\images\img43.png" />
+    <Content Remove="wwwroot\images\img44.png" />
+    <Content Remove="wwwroot\images\img45.png" />
+    <Content Remove="wwwroot\images\img46.png" />
+    <Content Remove="wwwroot\images\img47.png" />
+    <Content Remove="wwwroot\images\img48.png" />
+    <Content Remove="wwwroot\images\img49.png" />
+    <Content Remove="wwwroot\images\img5.png" />
+    <Content Remove="wwwroot\images\img50.png" />
+    <Content Remove="wwwroot\images\img51.png" />
+    <Content Remove="wwwroot\images\img52.png" />
+    <Content Remove="wwwroot\images\img53.png" />
+    <Content Remove="wwwroot\images\img54.png" />
+    <Content Remove="wwwroot\images\img55.png" />
+    <Content Remove="wwwroot\images\img56.png" />
+    <Content Remove="wwwroot\images\img57.png" />
+    <Content Remove="wwwroot\images\img58.png" />
+    <Content Remove="wwwroot\images\img59.png" />
+    <Content Remove="wwwroot\images\img6.png" />
+    <Content Remove="wwwroot\images\img60.png" />
+    <Content Remove="wwwroot\images\img61.png" />
+    <Content Remove="wwwroot\images\img62.png" />
+    <Content Remove="wwwroot\images\img63.png" />
+    <Content Remove="wwwroot\images\img64.png" />
+    <Content Remove="wwwroot\images\img65.png" />
+    <Content Remove="wwwroot\images\img66.png" />
+    <Content Remove="wwwroot\images\img67.png" />
+    <Content Remove="wwwroot\images\img68.png" />
+    <Content Remove="wwwroot\images\img69.png" />
+    <Content Remove="wwwroot\images\img7.png" />
+    <Content Remove="wwwroot\images\img70.png" />
+    <Content Remove="wwwroot\images\img71.png" />
+    <Content Remove="wwwroot\images\img72.png" />
+    <Content Remove="wwwroot\images\img73.png" />
+    <Content Remove="wwwroot\images\img74.png" />
+    <Content Remove="wwwroot\images\img75.png" />
+    <Content Remove="wwwroot\images\img76.png" />
+    <Content Remove="wwwroot\images\img77.png" />
+    <Content Remove="wwwroot\images\img78.png" />
+    <Content Remove="wwwroot\images\img79.png" />
+    <Content Remove="wwwroot\images\img8.png" />
+    <Content Remove="wwwroot\images\img80.png" />
+    <Content Remove="wwwroot\images\img81.png" />
+    <Content Remove="wwwroot\images\img82.png" />
+    <Content Remove="wwwroot\images\img9.png" />
+    <Content Remove="wwwroot\images\learn-arrow.png" />
+    <Content Remove="wwwroot\images\line.png" />
+    <Content Remove="wwwroot\images\location-icon.png" />
+    <Content Remove="wwwroot\images\location.png" />
+    <Content Remove="wwwroot\images\logo.png" />
+    <Content Remove="wwwroot\images\logo1.png" />
+    <Content Remove="wwwroot\images\logo2.png" />
+    <Content Remove="wwwroot\images\logo3.png" />
+    <Content Remove="wwwroot\images\logo4.png" />
+    <Content Remove="wwwroot\images\logo5.png" />
+    <Content Remove="wwwroot\images\mail-icon.png" />
+    <Content Remove="wwwroot\images\more-arrow.png" />
+    <Content Remove="wwwroot\images\partner1.png" />
+    <Content Remove="wwwroot\images\partner2.png" />
+    <Content Remove="wwwroot\images\partner3.png" />
+    <Content Remove="wwwroot\images\partner4.png" />
+    <Content Remove="wwwroot\images\partner5.png" />
+    <Content Remove="wwwroot\images\pattern-black.png" />
+    <Content Remove="wwwroot\images\pattern-dark.png" />
+    <Content Remove="wwwroot\images\pattern-gold.png" />
+    <Content Remove="wwwroot\images\pattern-skeen.png" />
+    <Content Remove="wwwroot\images\pattern-white.png" />
+    <Content Remove="wwwroot\images\paycart.png" />
+    <Content Remove="wwwroot\images\play-img.jpg" />
+    <Content Remove="wwwroot\images\Preloader.gif" />
+    <Content Remove="wwwroot\images\product1.png" />
+    <Content Remove="wwwroot\images\product2.png" />
+    <Content Remove="wwwroot\images\product3.png" />
+    <Content Remove="wwwroot\images\scroll-arrow.png" />
+    <Content Remove="wwwroot\images\scroll-down.png" />
+    <Content Remove="wwwroot\images\scroll-white.png" />
+    <Content Remove="wwwroot\images\signature.png" />
+    <Content Remove="wwwroot\images\slide1.png" />
+    <Content Remove="wwwroot\images\slider-arrow-left-black.png" />
+    <Content Remove="wwwroot\images\slider-arrow-left.png" />
+    <Content Remove="wwwroot\images\slider-arrow-right-black.png" />
+    <Content Remove="wwwroot\images\slider-arrow-right.png" />
+    <Content Remove="wwwroot\images\slider2.jpg" />
+    <Content Remove="wwwroot\images\slider2.png" />
+    <Content Remove="wwwroot\images\slider3.png" />
+    <Content Remove="wwwroot\images\slider4.png" />
+    <Content Remove="wwwroot\images\star.png" />
+    <Content Remove="wwwroot\images\user.png" />
+    <Content Remove="wwwroot\images\user1.png" />
+    <Content Remove="wwwroot\js\app.js" />
+    <Content Remove="wwwroot\js\jquery.min.js" />
+    <Content Remove="wwwroot\js\script.js" />
+    <Content Remove="wwwroot\plugin\animation\animate.min.css" />
+    <Content Remove="wwwroot\plugin\animation\wow.min.js" />
+    <Content Remove="wwwroot\plugin\bootstrap\bootstrap-datepicker.js" />
+    <Content Remove="wwwroot\plugin\bootstrap\bootstrap.css" />
+    <Content Remove="wwwroot\plugin\bootstrap\bootstrap.min.js" />
+    <Content Remove="wwwroot\plugin\bootstrap\datepicker.css" />
+    <Content Remove="wwwroot\plugin\font-awesome\font-awesome.css" />
+    <Content Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_162a16fe.eot" />
+    <Content Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.eot" />
+    <Content Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.svg" />
+    <Content Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.ttf" />
+    <Content Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.woff" />
+    <Content Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.woff2.html" />
+    <Content Remove="wwwroot\plugin\font-awesome\fonts\fontello.eot" />
+    <Content Remove="wwwroot\plugin\font-awesome\fonts\fontello.svg" />
+    <Content Remove="wwwroot\plugin\font-awesome\fonts\fontello.ttf" />
+    <Content Remove="wwwroot\plugin\font-awesome\fonts\fontello.woff" />
+    <Content Remove="wwwroot\plugin\form-field\jquery.formstyler.css" />
+    <Content Remove="wwwroot\plugin\form-field\jquery.formstyler.min.js" />
+    <Content Remove="wwwroot\plugin\isotop\isotop.js" />
+    <Content Remove="wwwroot\plugin\isotop\packery-mode.pkgd.min.js" />
+    <Content Remove="wwwroot\plugin\magnific\jquery.magnific-popup.min.js" />
+    <Content Remove="wwwroot\plugin\magnific\magnific-popup.css" />
+    <Content Remove="wwwroot\plugin\owl-carousel\owl.carousel.css" />
+    <Content Remove="wwwroot\plugin\owl-carousel\owl.carousel.min.js" />
+    <Content Remove="wwwroot\plugin\owl-carousel\owl.theme.default.css" />
+    <Content Remove="wwwroot\plugin\parallax\jquery.stellar.js" />
+    <Content Remove="wwwroot\plugin\revolution-plugin\extralayers.css" />
+    <Content Remove="wwwroot\plugin\revolution-plugin\jquery.themepunch.plugins.min.js" />
+    <Content Remove="wwwroot\plugin\revolution-plugin\jquery.themepunch.revolution.min.js" />
+    <Content Remove="wwwroot\plugin\revolution-plugin\settings.css" />
+    <Content Remove="wwwroot\plugin\scroll-bar\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Remove="wwwroot\plugin\scroll-bar\jquery.mCustomScrollbar.css" />
+    <Content Remove="wwwroot\plugin\slick-slider\slick-theme.css" />
+    <Content Remove="wwwroot\plugin\slick-slider\slick.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\images\404.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\arrow-black-left.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\arrow-black-right.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\arrow-left-active.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\arrow-left.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\arrow-right-active.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\arrow-right.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\arrow-top.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\award1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\award2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\award3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\award4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\banner2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\animation\animate.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\animation\animate.min.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\animation\wow.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\bootstrap\bootstrap-datepicker.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\bootstrap\bootstrap.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\bootstrap\bootstrap.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\bootstrap\bootstrap.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\bootstrap\datepicker.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\bootstrap\datepicker.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\font-awesome.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\font-awesome.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_162a16fe.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.woff2.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\fonts\fontello.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\fonts\fontello.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\fonts\fontello.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\font-awesome\fonts\fontello.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\form-field\jquery.formstyler.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\form-field\jquery.formstyler.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\form-field\jquery.formstyler.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\isotop\isotop.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\isotop\packery-mode.pkgd.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\magnific\jquery.magnific-popup.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\magnific\magnific-popup.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\magnific\magnific-popup.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\owl-carousel\owl.carousel.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\owl-carousel\owl.carousel.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\owl-carousel\owl.theme.default.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\parallax\jquery.stellar.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\revolution-plugin\extralayers.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\revolution-plugin\jquery.themepunch.plugins.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\revolution-plugin\jquery.themepunch.revolution.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\revolution-plugin\settings.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\scroll-bar\jquery.mCustomScrollbar.concat.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\scroll-bar\jquery.mCustomScrollbar.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\scroll-bar\jquery.mCustomScrollbar.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\slick-slider\slick-theme.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\slick-slider\slick-theme.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugin\slick-slider\slick.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Gray.Microsoft.AspNetCore.SignalR.Messaging" Version="0.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap-grid.css" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap-grid.min.css" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap-reboot.css" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap-reboot.min.css" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap.css" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap.min.css" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\js\bootstrap.js" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\assets\bootstrap-4.0.0-beta.3-dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\assets\css\app.css" />
+    <None Include="wwwroot\assets\css\font-awesome.min.css" />
+    <None Include="wwwroot\assets\css\ionicons.css" />
+    <None Include="wwwroot\assets\css\responsive.css" />
+    <None Include="wwwroot\assets\fonts\fontawesome-webfont.eot" />
+    <None Include="wwwroot\assets\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\assets\fonts\fontawesome-webfont.ttf" />
+    <None Include="wwwroot\assets\fonts\fontawesome-webfont.woff" />
+    <None Include="wwwroot\assets\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\assets\fonts\FontAwesome.otf" />
+    <None Include="wwwroot\assets\fonts\ionicons.eot" />
+    <None Include="wwwroot\assets\fonts\ionicons.svg" />
+    <None Include="wwwroot\assets\fonts\ionicons.ttf" />
+    <None Include="wwwroot\assets\fonts\ionicons.woff" />
+    <None Include="wwwroot\assets\images\app1.png" />
+    <None Include="wwwroot\assets\images\app2.png" />
+    <None Include="wwwroot\assets\images\app3.png" />
+    <None Include="wwwroot\assets\images\background\background_01.jpg" />
+    <None Include="wwwroot\assets\images\background\background_01.png" />
+    <None Include="wwwroot\assets\images\background\background_02.jpg" />
+    <None Include="wwwroot\assets\images\background\background_03.jpg" />
+    <None Include="wwwroot\assets\images\background\background_04.jpg" />
+    <None Include="wwwroot\assets\images\clients\byulogo.png" />
+    <None Include="wwwroot\assets\images\clients\clevelandfire.png" />
+    <None Include="wwwroot\assets\images\clients\dashed-line.jpg" />
+    <None Include="wwwroot\assets\images\clients\dlink-logo.png" />
+    <None Include="wwwroot\assets\images\clients\iop.png" />
+    <None Include="wwwroot\assets\images\clients\logoTxt.png" />
+    <None Include="wwwroot\assets\images\clients\logo_unitn.png" />
+    <None Include="wwwroot\assets\images\clients\microsoft.png" />
+    <None Include="wwwroot\assets\images\clients\nba.jpg" />
+    <None Include="wwwroot\assets\images\clients\nvidia-logo.jpg" />
+    <None Include="wwwroot\assets\images\clients\scsba-header-brand.png" />
+    <None Include="wwwroot\assets\images\clients\uanl.png" />
+    <None Include="wwwroot\assets\images\clients\ucla.png" />
+    <None Include="wwwroot\assets\images\clients\uflogo.png" />
+    <None Include="wwwroot\assets\images\clients\um-logo.png" />
+    <None Include="wwwroot\assets\images\clients\upenn-logo.png" />
+    <None Include="wwwroot\assets\images\clients\y-plan-logo-small.png" />
+    <None Include="wwwroot\assets\images\clients\yale_University_logo.svg.png" />
+    <None Include="wwwroot\assets\images\logo\intro-section.jpg" />
+    <None Include="wwwroot\assets\images\logo\slide-home3.jpg" />
+    <None Include="wwwroot\assets\images\svg\undraw_blog_anyj.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_browser_stats_704t.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_checklist_7q37.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_connected_8wvi.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_contrast_vb82.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_create_f05x.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_destanation1_h3vq.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_Devices_e67q.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_files1_9ool.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_files_6b3d.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_filter_4kje.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_folder_x4ft.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_hello_aeia.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_images_aef7.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_Internet_on_the_go_5xx0.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_JavaScript_Frameworks_x21l.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_job_hunt_byf9.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_map_light_6ttm.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_opened_gi4n.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_profile_pic_ic5t.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_responsive_6c8s.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_resume_1hqp.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_resume_folder_2_arse.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_safe_bnk7.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_segment_uwu1.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_sync4_xlc6.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_typing_jie3.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_windows_q9m0.svg" />
+    <None Include="wwwroot\assets\images\svg\undraw_working2_ce2b.svg" />
+    <None Include="wwwroot\assets\images\team_1.jpg" />
+    <None Include="wwwroot\assets\images\team_2.jpg" />
+    <None Include="wwwroot\assets\images\team_3.jpg" />
+    <None Include="wwwroot\assets\images\thumb\blog-item_01.jpg" />
+    <None Include="wwwroot\assets\images\thumb\blog-item_02.jpg" />
+    <None Include="wwwroot\assets\images\thumb\blog-item_03.jpg" />
+    <None Include="wwwroot\assets\images\thumb\blog-item_04.jpg" />
+    <None Include="wwwroot\assets\images\thumb\blog-thumb_01.jpg" />
+    <None Include="wwwroot\assets\js\app.js" />
+    <None Include="wwwroot\assets\js\jquery-3.2.1.slim.min.js" />
+    <None Include="wwwroot\assets\js\popper.min.js" />
+    <None Include="wwwroot\assets\plugins\slick\ajax-loader.gif" />
+    <None Include="wwwroot\assets\plugins\slick\config.rb" />
+    <None Include="wwwroot\assets\plugins\slick\fonts\slick.eot" />
+    <None Include="wwwroot\assets\plugins\slick\fonts\slick.svg" />
+    <None Include="wwwroot\assets\plugins\slick\fonts\slick.ttf" />
+    <None Include="wwwroot\assets\plugins\slick\fonts\slick.woff" />
+    <None Include="wwwroot\assets\plugins\slick\slick-theme.css" />
+    <None Include="wwwroot\assets\plugins\slick\slick-theme.less" />
+    <None Include="wwwroot\assets\plugins\slick\slick-theme.scss" />
+    <None Include="wwwroot\assets\plugins\slick\slick.css" />
+    <None Include="wwwroot\assets\plugins\slick\slick.js" />
+    <None Include="wwwroot\assets\plugins\slick\slick.less" />
+    <None Include="wwwroot\assets\plugins\slick\slick.min.js" />
+    <None Include="wwwroot\assets\plugins\slick\slick.scss" />
+    <None Include="wwwroot\css\responsive.css" />
+    <None Include="wwwroot\css\theme.css" />
+    <None Include="wwwroot\fonts\Graviola-Regular.otf" />
+    <None Include="wwwroot\fonts\Graviola-Regular.svg" />
+    <None Include="wwwroot\fonts\Graviola-Regular.ttf" />
+    <None Include="wwwroot\fonts\Graviola-Regular.woff" />
+    <None Include="wwwroot\fonts\Graviola-Regular_162a16fe.eot" />
+    <None Include="wwwroot\fonts\GraviolaSoft-Medium.otf" />
+    <None Include="wwwroot\fonts\GraviolaSoft-Medium.svg" />
+    <None Include="wwwroot\fonts\GraviolaSoft-Medium.ttf" />
+    <None Include="wwwroot\fonts\GraviolaSoft-Medium.woff" />
+    <None Include="wwwroot\fonts\GraviolaSoft-Medium_162a16fe.eot" />
+    <None Include="wwwroot\fonts\icomoon.eot" />
+    <None Include="wwwroot\fonts\icomoon.svg" />
+    <None Include="wwwroot\fonts\icomoon.ttf" />
+    <None Include="wwwroot\fonts\icomoon.woff" />
+    <None Include="wwwroot\fonts\icomoon.woff2.html" />
+    <None Include="wwwroot\fonts\icomoon_162a16fe.eot" />
+    <None Include="wwwroot\fonts\jey.svg" />
+    <None Include="wwwroot\fonts\jey.ttf" />
+    <None Include="wwwroot\fonts\jey.woff" />
+    <None Include="wwwroot\fonts\jey_162a16fe.eot" />
+    <None Include="wwwroot\fonts\QuicksandBold-Regular.otf" />
+    <None Include="wwwroot\fonts\QuicksandBold-Regular.svg" />
+    <None Include="wwwroot\fonts\QuicksandBold-Regular.ttf" />
+    <None Include="wwwroot\fonts\QuicksandBold-Regular.woff" />
+    <None Include="wwwroot\fonts\QuicksandBold-Regular_162a16fe.eot" />
+    <None Include="wwwroot\fonts\QuicksandBook-Regular.otf" />
+    <None Include="wwwroot\fonts\QuicksandBook-Regular.svg" />
+    <None Include="wwwroot\fonts\QuicksandBook-Regular.ttf" />
+    <None Include="wwwroot\fonts\QuicksandBook-Regular.woff" />
+    <None Include="wwwroot\fonts\QuicksandBook-Regular_162a16fe.eot" />
+    <None Include="wwwroot\fonts\QuicksandLight-Regular.otf" />
+    <None Include="wwwroot\fonts\QuicksandLight-Regular.svg" />
+    <None Include="wwwroot\fonts\QuicksandLight-Regular.ttf" />
+    <None Include="wwwroot\fonts\QuicksandLight-Regular.woff" />
+    <None Include="wwwroot\fonts\QuicksandLight-Regular_162a16fe.eot" />
+    <None Include="wwwroot\fonts\revicons_b04f8619.eot" />
+    <None Include="wwwroot\fonts\revicons_b04f8619.svg" />
+    <None Include="wwwroot\fonts\revicons_b04f8619.ttf" />
+    <None Include="wwwroot\fonts\revicons_b04f8619.woff" />
+    <None Include="wwwroot\fonts\slick.eot" />
+    <None Include="wwwroot\fonts\slick.svg" />
+    <None Include="wwwroot\fonts\slick.ttf" />
+    <None Include="wwwroot\fonts\slick.woff" />
+    <None Include="wwwroot\fonts\slick_162a16fe.eot" />
+    <None Include="wwwroot\images\404.png" />
+    <None Include="wwwroot\images\arrow-black-left.png" />
+    <None Include="wwwroot\images\arrow-black-right.png" />
+    <None Include="wwwroot\images\arrow-left-active.png" />
+    <None Include="wwwroot\images\arrow-left.png" />
+    <None Include="wwwroot\images\arrow-right-active.png" />
+    <None Include="wwwroot\images\arrow-right.png" />
+    <None Include="wwwroot\images\arrow-top.png" />
+    <None Include="wwwroot\images\award1.jpg" />
+    <None Include="wwwroot\images\award2.jpg" />
+    <None Include="wwwroot\images\award3.jpg" />
+    <None Include="wwwroot\images\award4.jpg" />
+    <None Include="wwwroot\images\banner2.jpg" />
+    <None Include="wwwroot\images\banner6.jpg" />
+    <None Include="wwwroot\images\banner7.jpg" />
+    <None Include="wwwroot\images\breadbg1.jpg" />
+    <None Include="wwwroot\images\btn1-bg.jpg" />
+    <None Include="wwwroot\images\btn2-bg.jpg" />
+    <None Include="wwwroot\images\cell-icon.png" />
+    <None Include="wwwroot\images\chef1.png" />
+    <None Include="wwwroot\images\chef2.png" />
+    <None Include="wwwroot\images\chef3.png" />
+    <None Include="wwwroot\images\chef4.png" />
+    <None Include="wwwroot\images\chef5.png" />
+    <None Include="wwwroot\images\client1.png" />
+    <None Include="wwwroot\images\client2.png" />
+    <None Include="wwwroot\images\client3.png" />
+    <None Include="wwwroot\images\client4.png" />
+    <None Include="wwwroot\images\client5.png" />
+    <None Include="wwwroot\images\clock-icon.png" />
+    <None Include="wwwroot\images\close-blue.png" />
+    <None Include="wwwroot\images\close.png" />
+    <None Include="wwwroot\images\comment-img1.png" />
+    <None Include="wwwroot\images\comment.png" />
+    <None Include="wwwroot\images\comment1.png" />
+    <None Include="wwwroot\images\complete-sign.png" />
+    <None Include="wwwroot\images\delete.png" />
+    <None Include="wwwroot\images\direction-left-active.png" />
+    <None Include="wwwroot\images\direction-left.png" />
+    <None Include="wwwroot\images\direction-right-active.png" />
+    <None Include="wwwroot\images\direction-right.png" />
+    <None Include="wwwroot\images\dummy.png" />
+    <None Include="wwwroot\images\feature1.jpg" />
+    <None Include="wwwroot\images\feature2.jpg" />
+    <None Include="wwwroot\images\feature3.jpg" />
+    <None Include="wwwroot\images\find-us.png" />
+    <None Include="wwwroot\images\fon.png" />
+    <None Include="wwwroot\images\footer-logo.png" />
+    <None Include="wwwroot\images\gallery\gallery-big1.jpeg" />
+    <None Include="wwwroot\images\gallery\gallery-big2.jpeg" />
+    <None Include="wwwroot\images\gallery\gallery-big3.jpeg" />
+    <None Include="wwwroot\images\gallery\gallery-big4.jpeg" />
+    <None Include="wwwroot\images\gallery\gallery-big5.jpeg" />
+    <None Include="wwwroot\images\gallery\gallery-big6.jpeg" />
+    <None Include="wwwroot\images\gallery\gallery1.png" />
+    <None Include="wwwroot\images\gallery\gallery10.jpg" />
+    <None Include="wwwroot\images\gallery\gallery11.jpg" />
+    <None Include="wwwroot\images\gallery\gallery12.jpg" />
+    <None Include="wwwroot\images\gallery\gallery13.jpg" />
+    <None Include="wwwroot\images\gallery\gallery14.jpg" />
+    <None Include="wwwroot\images\gallery\gallery15.jpg" />
+    <None Include="wwwroot\images\gallery\gallery16.jpg" />
+    <None Include="wwwroot\images\gallery\gallery17.jpg" />
+    <None Include="wwwroot\images\gallery\gallery18.jpg" />
+    <None Include="wwwroot\images\gallery\gallery19.jpg" />
+    <None Include="wwwroot\images\gallery\gallery2.png" />
+    <None Include="wwwroot\images\gallery\gallery20.jpg" />
+    <None Include="wwwroot\images\gallery\gallery21.jpg" />
+    <None Include="wwwroot\images\gallery\gallery22.jpg" />
+    <None Include="wwwroot\images\gallery\gallery23.jpg" />
+    <None Include="wwwroot\images\gallery\gallery24.jpg" />
+    <None Include="wwwroot\images\gallery\gallery25.jpg" />
+    <None Include="wwwroot\images\gallery\gallery26.jpg" />
+    <None Include="wwwroot\images\gallery\gallery27.jpg" />
+    <None Include="wwwroot\images\gallery\gallery28.jpg" />
+    <None Include="wwwroot\images\gallery\gallery29.jpg" />
+    <None Include="wwwroot\images\gallery\gallery3.png" />
+    <None Include="wwwroot\images\gallery\gallery30.jpg" />
+    <None Include="wwwroot\images\gallery\gallery31.jpg" />
+    <None Include="wwwroot\images\gallery\gallery32.jpg" />
+    <None Include="wwwroot\images\gallery\gallery33.jpg" />
+    <None Include="wwwroot\images\gallery\gallery4.png" />
+    <None Include="wwwroot\images\gallery\gallery5.png" />
+    <None Include="wwwroot\images\gallery\gallery6.png" />
+    <None Include="wwwroot\images\gallery\gallery7.jpg" />
+    <None Include="wwwroot\images\gallery\gallery8.jpg" />
+    <None Include="wwwroot\images\gallery\gallery9.jpg" />
+    <None Include="wwwroot\images\gallery\mesonary1.jpg" />
+    <None Include="wwwroot\images\gallery\mesonary2.jpg" />
+    <None Include="wwwroot\images\gallery\mesonary3.jpg" />
+    <None Include="wwwroot\images\gallery\mesonary4.jpg" />
+    <None Include="wwwroot\images\gallery\mesonary5.jpg" />
+    <None Include="wwwroot\images\gallery\mesonary6.jpg" />
+    <None Include="wwwroot\images\gallery\mesonary7.jpg" />
+    <None Include="wwwroot\images\gallery\mesonary8.jpg" />
+    <None Include="wwwroot\images\gradient-bg.png" />
+    <None Include="wwwroot\images\icon-basket-blue.png" />
+    <None Include="wwwroot\images\icon-basket.png" />
+    <None Include="wwwroot\images\icon-table-blue.png" />
+    <None Include="wwwroot\images\icon-table.png" />
+    <None Include="wwwroot\images\icon-zoom-blue.png" />
+    <None Include="wwwroot\images\icon-zoom.png" />
+    <None Include="wwwroot\images\icon1.png" />
+    <None Include="wwwroot\images\icon10.png" />
+    <None Include="wwwroot\images\icon11.png" />
+    <None Include="wwwroot\images\icon12.png" />
+    <None Include="wwwroot\images\icon13.png" />
+    <None Include="wwwroot\images\icon14.png" />
+    <None Include="wwwroot\images\icon15.png" />
+    <None Include="wwwroot\images\icon16.png" />
+    <None Include="wwwroot\images\icon17.png" />
+    <None Include="wwwroot\images\icon18.png" />
+    <None Include="wwwroot\images\icon19.png" />
+    <None Include="wwwroot\images\icon2.png" />
+    <None Include="wwwroot\images\icon20.png" />
+    <None Include="wwwroot\images\icon21.png" />
+    <None Include="wwwroot\images\icon22.png" />
+    <None Include="wwwroot\images\icon23.png" />
+    <None Include="wwwroot\images\icon24.png" />
+    <None Include="wwwroot\images\icon25.png" />
+    <None Include="wwwroot\images\icon26.png" />
+    <None Include="wwwroot\images\icon27.png" />
+    <None Include="wwwroot\images\icon28.png" />
+    <None Include="wwwroot\images\icon3.png" />
+    <None Include="wwwroot\images\icon31.png" />
+    <None Include="wwwroot\images\icon32.png" />
+    <None Include="wwwroot\images\icon33.png" />
+    <None Include="wwwroot\images\icon34.png" />
+    <None Include="wwwroot\images\icon35.png" />
+    <None Include="wwwroot\images\icon36.png" />
+    <None Include="wwwroot\images\icon37.png" />
+    <None Include="wwwroot\images\icon38.png" />
+    <None Include="wwwroot\images\icon39.png" />
+    <None Include="wwwroot\images\icon4.png" />
+    <None Include="wwwroot\images\icon40.png" />
+    <None Include="wwwroot\images\icon41.png" />
+    <None Include="wwwroot\images\icon5.png" />
+    <None Include="wwwroot\images\icon6.png" />
+    <None Include="wwwroot\images\icon7.png" />
+    <None Include="wwwroot\images\icon8.png" />
+    <None Include="wwwroot\images\icon9.png" />
+    <None Include="wwwroot\images\img10.png" />
+    <None Include="wwwroot\images\img11.png" />
+    <None Include="wwwroot\images\img12.png" />
+    <None Include="wwwroot\images\img13.png" />
+    <None Include="wwwroot\images\img14.png" />
+    <None Include="wwwroot\images\img15.png" />
+    <None Include="wwwroot\images\img16.png" />
+    <None Include="wwwroot\images\img17.png" />
+    <None Include="wwwroot\images\img18.png" />
+    <None Include="wwwroot\images\img19.png" />
+    <None Include="wwwroot\images\img2.png" />
+    <None Include="wwwroot\images\img20.png" />
+    <None Include="wwwroot\images\img21.png" />
+    <None Include="wwwroot\images\img22.png" />
+    <None Include="wwwroot\images\img23.png" />
+    <None Include="wwwroot\images\img24.png" />
+    <None Include="wwwroot\images\img25.png" />
+    <None Include="wwwroot\images\img26.png" />
+    <None Include="wwwroot\images\img27.jpg" />
+    <None Include="wwwroot\images\img28.jpg" />
+    <None Include="wwwroot\images\img29.jpg" />
+    <None Include="wwwroot\images\img3.png" />
+    <None Include="wwwroot\images\img30.jpg" />
+    <None Include="wwwroot\images\img31.jpg" />
+    <None Include="wwwroot\images\img32.jpg" />
+    <None Include="wwwroot\images\img36.png" />
+    <None Include="wwwroot\images\img37.jpg" />
+    <None Include="wwwroot\images\img38.jpg" />
+    <None Include="wwwroot\images\img39.jpg" />
+    <None Include="wwwroot\images\img4.png" />
+    <None Include="wwwroot\images\img40.jpg" />
+    <None Include="wwwroot\images\img41.png" />
+    <None Include="wwwroot\images\img42.png" />
+    <None Include="wwwroot\images\img43.png" />
+    <None Include="wwwroot\images\img44.png" />
+    <None Include="wwwroot\images\img45.png" />
+    <None Include="wwwroot\images\img46.png" />
+    <None Include="wwwroot\images\img47.png" />
+    <None Include="wwwroot\images\img48.png" />
+    <None Include="wwwroot\images\img49.png" />
+    <None Include="wwwroot\images\img5.png" />
+    <None Include="wwwroot\images\img50.png" />
+    <None Include="wwwroot\images\img51.png" />
+    <None Include="wwwroot\images\img52.png" />
+    <None Include="wwwroot\images\img53.png" />
+    <None Include="wwwroot\images\img54.png" />
+    <None Include="wwwroot\images\img55.png" />
+    <None Include="wwwroot\images\img56.png" />
+    <None Include="wwwroot\images\img57.png" />
+    <None Include="wwwroot\images\img58.png" />
+    <None Include="wwwroot\images\img59.png" />
+    <None Include="wwwroot\images\img6.png" />
+    <None Include="wwwroot\images\img60.png" />
+    <None Include="wwwroot\images\img61.png" />
+    <None Include="wwwroot\images\img62.png" />
+    <None Include="wwwroot\images\img63.png" />
+    <None Include="wwwroot\images\img64.png" />
+    <None Include="wwwroot\images\img65.png" />
+    <None Include="wwwroot\images\img66.png" />
+    <None Include="wwwroot\images\img67.png" />
+    <None Include="wwwroot\images\img68.png" />
+    <None Include="wwwroot\images\img69.png" />
+    <None Include="wwwroot\images\img7.png" />
+    <None Include="wwwroot\images\img70.png" />
+    <None Include="wwwroot\images\img71.png" />
+    <None Include="wwwroot\images\img72.png" />
+    <None Include="wwwroot\images\img73.png" />
+    <None Include="wwwroot\images\img74.png" />
+    <None Include="wwwroot\images\img75.png" />
+    <None Include="wwwroot\images\img76.png" />
+    <None Include="wwwroot\images\img77.png" />
+    <None Include="wwwroot\images\img78.png" />
+    <None Include="wwwroot\images\img79.png" />
+    <None Include="wwwroot\images\img8.png" />
+    <None Include="wwwroot\images\img80.png" />
+    <None Include="wwwroot\images\img81.png" />
+    <None Include="wwwroot\images\img82.png" />
+    <None Include="wwwroot\images\img9.png" />
+    <None Include="wwwroot\images\learn-arrow.png" />
+    <None Include="wwwroot\images\line.png" />
+    <None Include="wwwroot\images\location-icon.png" />
+    <None Include="wwwroot\images\location.png" />
+    <None Include="wwwroot\images\logo.png" />
+    <None Include="wwwroot\images\logo1.png" />
+    <None Include="wwwroot\images\logo2.png" />
+    <None Include="wwwroot\images\logo3.png" />
+    <None Include="wwwroot\images\logo4.png" />
+    <None Include="wwwroot\images\logo5.png" />
+    <None Include="wwwroot\images\mail-icon.png" />
+    <None Include="wwwroot\images\more-arrow.png" />
+    <None Include="wwwroot\images\partner1.png" />
+    <None Include="wwwroot\images\partner2.png" />
+    <None Include="wwwroot\images\partner3.png" />
+    <None Include="wwwroot\images\partner4.png" />
+    <None Include="wwwroot\images\partner5.png" />
+    <None Include="wwwroot\images\pattern-black.png" />
+    <None Include="wwwroot\images\pattern-dark.png" />
+    <None Include="wwwroot\images\pattern-gold.png" />
+    <None Include="wwwroot\images\pattern-skeen.png" />
+    <None Include="wwwroot\images\pattern-white.png" />
+    <None Include="wwwroot\images\paycart.png" />
+    <None Include="wwwroot\images\play-img.jpg" />
+    <None Include="wwwroot\images\Preloader.gif" />
+    <None Include="wwwroot\images\product1.png" />
+    <None Include="wwwroot\images\product2.png" />
+    <None Include="wwwroot\images\product3.png" />
+    <None Include="wwwroot\images\scroll-arrow.png" />
+    <None Include="wwwroot\images\scroll-down.png" />
+    <None Include="wwwroot\images\scroll-white.png" />
+    <None Include="wwwroot\images\signature.png" />
+    <None Include="wwwroot\images\slide1.png" />
+    <None Include="wwwroot\images\slider-arrow-left-black.png" />
+    <None Include="wwwroot\images\slider-arrow-left.png" />
+    <None Include="wwwroot\images\slider-arrow-right-black.png" />
+    <None Include="wwwroot\images\slider-arrow-right.png" />
+    <None Include="wwwroot\images\slider2.jpg" />
+    <None Include="wwwroot\images\slider2.png" />
+    <None Include="wwwroot\images\slider3.png" />
+    <None Include="wwwroot\images\slider4.png" />
+    <None Include="wwwroot\images\star.png" />
+    <None Include="wwwroot\images\user.png" />
+    <None Include="wwwroot\images\user1.png" />
+    <None Include="wwwroot\js\app.js" />
+    <None Include="wwwroot\js\jquery.min.js" />
+    <None Include="wwwroot\js\script.js" />
+    <None Include="wwwroot\plugin\animation\animate.min.css" />
+    <None Include="wwwroot\plugin\animation\wow.min.js" />
+    <None Include="wwwroot\plugin\bootstrap\bootstrap-datepicker.js" />
+    <None Include="wwwroot\plugin\bootstrap\bootstrap.css" />
+    <None Include="wwwroot\plugin\bootstrap\bootstrap.min.js" />
+    <None Include="wwwroot\plugin\bootstrap\datepicker.css" />
+    <None Include="wwwroot\plugin\font-awesome\font-awesome.css" />
+    <None Include="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_162a16fe.eot" />
+    <None Include="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.eot" />
+    <None Include="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.svg" />
+    <None Include="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.ttf" />
+    <None Include="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.woff" />
+    <None Include="wwwroot\plugin\font-awesome\fonts\fontawesome-webfont_cdea9098.woff2.html" />
+    <None Include="wwwroot\plugin\font-awesome\fonts\fontello.eot" />
+    <None Include="wwwroot\plugin\font-awesome\fonts\fontello.svg" />
+    <None Include="wwwroot\plugin\font-awesome\fonts\fontello.ttf" />
+    <None Include="wwwroot\plugin\font-awesome\fonts\fontello.woff" />
+    <None Include="wwwroot\plugin\form-field\jquery.formstyler.css" />
+    <None Include="wwwroot\plugin\form-field\jquery.formstyler.min.js" />
+    <None Include="wwwroot\plugin\isotop\isotop.js" />
+    <None Include="wwwroot\plugin\isotop\packery-mode.pkgd.min.js" />
+    <None Include="wwwroot\plugin\magnific\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\plugin\magnific\magnific-popup.css" />
+    <None Include="wwwroot\plugin\owl-carousel\owl.carousel.css" />
+    <None Include="wwwroot\plugin\owl-carousel\owl.carousel.min.js" />
+    <None Include="wwwroot\plugin\owl-carousel\owl.theme.default.css" />
+    <None Include="wwwroot\plugin\parallax\jquery.stellar.js" />
+    <None Include="wwwroot\plugin\revolution-plugin\extralayers.css" />
+    <None Include="wwwroot\plugin\revolution-plugin\jquery.themepunch.plugins.min.js" />
+    <None Include="wwwroot\plugin\revolution-plugin\jquery.themepunch.revolution.min.js" />
+    <None Include="wwwroot\plugin\revolution-plugin\settings.css" />
+    <None Include="wwwroot\plugin\scroll-bar\jquery.mCustomScrollbar.concat.min.js" />
+    <None Include="wwwroot\plugin\scroll-bar\jquery.mCustomScrollbar.css" />
+    <None Include="wwwroot\plugin\slick-slider\slick-theme.css" />
+    <None Include="wwwroot\plugin\slick-slider\slick.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudentCity.Application\StudentCity.Application.csproj" />
+    <ProjectReference Include="..\StudentCity.BL\StudentCity.BL.csproj" />
+    <ProjectReference Include="..\StudentCity.DAL\StudentCity.DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Resource.Designer.cs">
+      <DependentUpon>Resource.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Account\ResetPassword.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Account\LoginRegister.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Admin\CaptainsRequest.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Admin\EditCaptain.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Admin\Search.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Admin\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Building\BuildingStatistics.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Building\Add.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Building\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Building\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\College\Add.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\College\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\College\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Governrate\Add.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Governrate\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Captain\Add.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Captain\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\City\Add.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\City\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Profile\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Country\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Home\About.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Home\Contact.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Home\Index.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Home\Services.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Profile\ChangePassword.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Error.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_Layout.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\_ValidationScriptsPartial.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Student\detailsAction.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Account\edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Student\RoomsInSearch.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Student\Rooms.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Student\MyInvitation.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Student\RecommendedGroup.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\_ViewImports.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\_ViewStart.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\arabicTheme.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\responsive.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\banner1.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\banner2.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\banner3.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\banner4.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\img41.jpg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\mobile.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\site.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\site.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\.bower.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap-theme.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap-theme.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap-theme.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap-theme.min.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.eot">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\js\bootstrap.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\js\npm.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\LICENSE">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation-unobtrusive\.bower.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\.bower.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\dist\additional-methods.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\dist\additional-methods.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\dist\jquery.validate.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\LICENSE.md">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery\.bower.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery\dist\jquery.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery\dist\jquery.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery\dist\jquery.min.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery\LICENSE.txt">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Resource.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resource.hi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resource.resx">
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\brands\brand 1\" />
+  </ItemGroup>
+
+</Project>

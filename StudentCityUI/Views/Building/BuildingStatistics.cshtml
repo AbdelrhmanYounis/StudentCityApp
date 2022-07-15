@@ -1,0 +1,60 @@
+﻿@model StudentCity.DAL.Models.Permissions.Building
+@using StudentCityUI.Resources
+
+<script src="~/js/exporting.js"></script>
+<script src="~/js/highcharts.js"></script>
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<input id="BuildingIdInput" value="@ViewBag.BuildingId" hidden/>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+    <script>
+        (function () {
+            $.ajax({
+                type: "Get",
+                url: "/Building/GetBuildingData?BuildingId=" + $("#BuildingIdInput").val(),
+
+                success: function (response) {
+                     // Create the chart
+                    Highcharts.chart('container', {
+                        chart: {
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'Building ' + response.building +' Statistic'
+                        },
+                        subtitle: {
+                            text: ''
+                        },
+                        plotOptions: {
+                            series: {
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.name}: {point.y:.2f}%'
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                        },
+
+                        series: [
+                            {
+                                name: "Colleges",
+                                colorByPoint: true,
+                                data: response.data
+                            }
+                        ],
+
+                    });
+                }, error: function () {
+                    Warning("Error");
+                }
+
+            })
+
+        })();
+       
+       
+    </script>

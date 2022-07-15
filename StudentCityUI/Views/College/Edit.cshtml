@@ -1,0 +1,36 @@
+﻿@model StudentCity.DAL.Models.Lookups.College
+@using StudentCityUI.Resources
+
+<section class="default-section contact-part home-icon">
+    <div class="container">
+        <div class="title">
+           
+            <div class="col-sm-6">
+                <form asp-action="Edit">
+                    <h2 class="text-coffee">
+                        @Resource.edit @Resource.College
+                    </h2>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label">@Resource.EnglishName</label>
+                        <input asp-for="NameEn" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">@Resource.ArabicName</label>
+                        <input asp-for="NameAr" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">@Resource.NumOf @Resource.Levels</label>
+                        <input asp-for="LevelNum" type="number" min="2" max="7" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="@Resource.save" class="button-default btn-primary-gold" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                @Html.ActionLink(Resource.backTo + " " + Resource.List + " " + Resource.Colleges, "Index", "College", null, new { @class = "tag-btn" })
+            </div>
+        </div>
+    </div>
+</section>

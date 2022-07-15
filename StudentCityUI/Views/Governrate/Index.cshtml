@@ -1,0 +1,132 @@
+﻿@model IEnumerable<StudentCity.DAL.Models.Lookups.Governrate>
+@using StudentCityUI.Resources
+
+<section class="default-section contact-part home-icon">
+    <div class="container">
+        <a class="button-default btn-action" href="/Governrate/Add/@ViewBag.CountryId">@Resource.Add @Resource.Area</a>
+        @if (ViewBag.CountryId != 0)
+        {
+            <a class="btn btn-action" href="/Country/Index/@ViewBag.CountryId">@Resource.backTo @Resource.List @Resource.Countries</a>
+        }
+       
+        <div class="title">
+            <h1 class="head text-center">@Resource.List @Resource.Areas</h1>
+            <div class="table-responsive">
+                <table class="main-table text-center table table-bordered">
+
+                    <tr>
+                        <th>
+                            @Resource.EnglishName
+                        </th>
+                        <th>
+                            @Resource.ArabicName
+                        </th>
+                        <th>
+                            @Resource.The@Resource.Country
+                        </th>
+                        @if (ViewBag.CountryId != 0)
+                        {
+                            <th>
+                                @Resource.Cities
+                            </th>
+                        }
+                        <th>
+                            @Resource.control
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr id="Area_@item.Id">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameEn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameAr)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Country.NameEn)
+                            </td>
+                            @if (ViewBag.CountryId != 0)
+                            {
+                                <td>
+                                    <a href="/City/Index/@item.Id"><span>@Resource.Cities</span></a>
+                                </td>
+                            }
+                            <td>
+
+                                @Html.ActionLink(Resource.edit, "Edit", new { id = item.Id, navigate = ViewBag.CountryId }, new { @class = "button-default btn-primary-gold" })
+
+                                <button type="button" onclick="AreaModalDelete(@item.Id)" class="button-danger">@Resource.delete</button>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" style="display:none" id="delete">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-color:#383848">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="color:#fff">@Resource.ConfirmMessage</h3>
+
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:#fff">
+                        @Resource.deleteMessage
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button-default btn-primary-gold" onclick="Delete()">@Resource.delete</button>
+                    <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<input type="hidden" id="hiddenAreaId">
+@section scripts
+
+    {
+    <script>
+       
+        function hide() {
+            $("#delete").css("display", "none");
+        }
+        /****************************************************************************/
+        function AreaModalDelete(AreaId) {
+
+            $("#delete").css("display", "block");
+            $("#hiddenAreaId").val(AreaId);
+
+        }
+        /****************************************************************************/
+        function Delete() {
+            var AreaId = $("#hiddenAreaId").val();
+            hide();
+            $.ajax({
+                type: "POST",
+                url: "/Area/Delete?id=" + AreaId,
+
+                success: function (response) {
+
+                    if (response) {
+                        $("#Area_" + AreaId).remove();
+                    }
+                    else {
+                        alert("Failed");
+                    }
+                }
+
+            })
+
+        }
+    </script>
+}

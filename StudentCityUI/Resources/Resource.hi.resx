@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="aboutus" xml:space="preserve">
+    <value>हमारे बारे में</value>
+  </data>
+  <data name="arabic" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="byStudentCityHouse" xml:space="preserve">
+    <value>डिलिवरी हाउस द्वारा</value>
+  </data>
+  <data name="clientsSays" xml:space="preserve">
+    <value>क्या कहते हैं ग्राहक</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>बंद</value>
+  </data>
+  <data name="contactus" xml:space="preserve">
+    <value>हमसे संपर्क करें</value>
+  </data>
+  <data name="contactUsDesc" xml:space="preserve">
+    <value>हम वितरण व्यवसाय के लिए प्रवेश के बाद से मार्च 2018</value>
+  </data>
+  <data name="deliciousFood" xml:space="preserve">
+    <value>स्वादिष्ट भोजन</value>
+  </data>
+  <data name="StudentCityHouse" xml:space="preserve">
+    <value>डिलिवरी हाउस</value>
+  </data>
+  <data name="StudentCityHouseApplication" xml:space="preserve">
+    <value>डिलिवरी हाउस आवेदन</value>
+  </data>
+  <data name="StudentCityHouseApplicationDesc" xml:space="preserve">
+    <value>डिलिवरी हाउस ऐप की मदद से आप अपने ऑर्डर की स्थिति जान सकते हैं । यह भी अनुवर्ती और सीधे अनुरोध के आंदोलन की अनुमति देता है और एक ही पर, जीपीएस पोजीशनिंग नक्शे के माध्यम से ।</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>ईमेल</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>अंग्रेज़ी</value>
+  </data>
+  <data name="enjoyWithYourfavFood" xml:space="preserve">
+    <value>हमारे महान तेजी से वितरण सेवा के साथ अपने पसंदीदा भोजन के साथ का आनंद लें</value>
+  </data>
+  <data name="fastStudentCity" xml:space="preserve">
+    <value>तेजी से वितरण</value>
+  </data>
+  <data name="fastStudentCityDesc" xml:space="preserve">
+    <value>प्रसव के घर आवेदन आप जहाँ भी आप कर रहे हैं पहुँचता है.</value>
+  </data>
+  <data name="fastFoodStudentCity" xml:space="preserve">
+    <value>फास्ट फूड डिलिवरी</value>
+  </data>
+  <data name="fastFoodRealService" xml:space="preserve">
+    <value>फास्ट फूड डिलिवरी-रियल सेवा</value>
+  </data>
+  <data name="findUsOnMap" xml:space="preserve">
+    <value>मानचित्र पर हमें खोजें</value>
+  </data>
+  <data name="firstName" xml:space="preserve">
+    <value>प्रथम नाम</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="fullAddress" xml:space="preserve">
+    <value>अल Malaz-Sitteen स्ट्रीट-केएफसी EL-Sitteen, रियाद, सऊदी अरब के पीछे ।</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>घर</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>अंतिम नाम</value>
+  </data>
+  <data name="leaveMessage" xml:space="preserve">
+    <value>हमें एक संदेश छोड़ दो</value>
+  </data>
+  <data name="locations" xml:space="preserve">
+    <value>स्थानों</value>
+  </data>
+  <data name="mobile" xml:space="preserve">
+    <value>मोबाइल</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="multiOptions" xml:space="preserve">
+    <value>एकाधिक विकल्प</value>
+  </data>
+  <data name="multiOptionsDesc" xml:space="preserve">
+    <value>रेस्तरां और खाद्य भंडार है, जो पहले से अनुरोध किया जा करने में सक्षम नहीं थे और वितरित की एक विस्तृत श्रृंखला</value>
+  </data>
+  <data name="openingHours" xml:space="preserve">
+    <value>खुलने का समय</value>
+  </data>
+  <data name="ourCaptains" xml:space="preserve">
+    <value>हमारे कप्तान</value>
+  </data>
+  <data name="ourServices" xml:space="preserve">
+    <value>सेवाओं</value>
+  </data>
+  <data name="pm" xml:space="preserve">
+    <value>PM</value>
+  </data>
+  <data name="qualityOfService" xml:space="preserve">
+    <value>सेवा की गुणवत्ता</value>
+  </data>
+  <data name="qualityOfServiceDesc" xml:space="preserve">
+    <value>हम उच्च गुणवत्ता वितरण सेवा की गारंटी, सुनिश्चित करना है कि आदेश के रूप में आता है अगर आप इसे अपने आप को रेस्तरां से प्राप्त किया ।</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="sendMessage" xml:space="preserve">
+    <value>संदेश भेजें</value>
+  </data>
+  <data name="services" xml:space="preserve">
+    <value>सेवाओं</value>
+  </data>
+  <data name="signture" xml:space="preserve">
+    <value>Ramy Khalifa / CEO</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>विषय</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="welcomeTo" xml:space="preserve">
+    <value>डिलिवरी हाउस में आपका स्वागत है</value>
+  </data>
+  <data name="welcomeToDescription" xml:space="preserve">
+    <value>डिलिवरी हाउस क्षेत्र में एक ऑनलाइन भोजन आदेश मंच है और अपने दरवाजे के लिए अपने पसंदीदा रेस्तरां से भोजन के आदेश के लिए अपनी खिड़की है । आज, हमारी सेवाओं के लिए कई एक विशेष नेटवर्क से मिलकर शहर के लिए आदेश और इंटरनेट से भोजन देने शामिल बढ़ाया । वर्तमान में हम सऊदी अरब के राज्य भर में हमारी सेवाएं प्रदान करते हैं ।</value>
+  </data>
+  <data name="yourMessage" xml:space="preserve">
+    <value>आपका संदेश</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="confirmPassword" xml:space="preserve">
+    <value>पासवर्ड की पुष्टि कीजिये</value>
+  </data>
+  <data name="facebookConnect" xml:space="preserve">
+    <value>Facebook Connect</value>
+  </data>
+  <data name="loastYourPassword" xml:space="preserve">
+    <value>आपका पासवर्ड खो गया है</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>लॉग इन करें</value>
+  </data>
+  <data name="loginRegister" xml:space="preserve">
+    <value>लॉगिन रजिस्टर</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>पारण शब्द</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>रजिस्टर</value>
+  </data>
+  <data name="registerNow" xml:space="preserve">
+    <value>अभी पंजीकरण करें</value>
+  </data>
+  <data name="rememberMe" xml:space="preserve">
+    <value>मुझे याद रखना</value>
+  </data>
+  <data name="twitterConnect" xml:space="preserve">
+    <value>Twitter Connect</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>उपयोगकर्ता नाम</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>बंद करे</value>
+  </data>
+  <data name="forgetPassowrdTitle" xml:space="preserve">
+    <value>पासवर्ड भूल गए</value>
+  </data>
+  <data name="forgetPasswordMessage" xml:space="preserve">
+    <value>अपना ईमेल लिखें</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>भेजना</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>स्वीकार करना</value>
+  </data>
+  <data name="admin" xml:space="preserve">
+    <value>व्यवस्थापक</value>
+  </data>
+  <data name="Areas" xml:space="preserve">
+    <value>क्षेत्रों</value>
+  </data>
+  <data name="backTo" xml:space="preserve">
+    <value>वापस</value>
+  </data>
+  <data name="Branches" xml:space="preserve">
+    <value>शाखाओं</value>
+  </data>
+  <data name="Brands" xml:space="preserve">
+    <value>ब्रांड्स</value>
+  </data>
+  <data name="Captains" xml:space="preserve">
+    <value>कप्तान</value>
+  </data>
+  <data name="CaptainsStatus" xml:space="preserve">
+    <value>वितरण अधिकारियों की स्थिति</value>
+  </data>
+  <data name="Cities" xml:space="preserve">
+    <value>शहरों</value>
+  </data>
+  <data name="ConfirmMessage" xml:space="preserve">
+    <value>संदेश की पुष्टि करें</value>
+  </data>
+  <data name="control" xml:space="preserve">
+    <value>नियंत्रण</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>देश</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>हटाना</value>
+  </data>
+  <data name="deleteMessage" xml:space="preserve">
+    <value>क्या आप इसे हटाना चाहते हैं ?</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>संपादित करें</value>
+  </data>
+  <data name="end" xml:space="preserve">
+    <value>समाप्त</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>सूची</value>
+  </data>
+  <data name="manage" xml:space="preserve">
+    <value>प्रबंधन</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>मिनट</value>
+  </data>
+  <data name="Refuse" xml:space="preserve">
+    <value>इनकार</value>
+  </data>
+  <data name="RefusedReason" xml:space="preserve">
+    <value>मना कारण</value>
+  </data>
+  <data name="RefusedReasons" xml:space="preserve">
+    <value>मना कर दिया कारण</value>
+  </data>
+  <data name="RefusedTime" xml:space="preserve">
+    <value>समय मना कर दिया</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>बचाना</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>शुरु</value>
+  </data>
+  <data name="startWork" xml:space="preserve">
+    <value>आपके काम के बाद शुरू होगा</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>स्थिति</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>जमा करें</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>स्वागत हे</value>
+  </data>
+  <data name="work" xml:space="preserve">
+    <value>काम</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>जोड़ना</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>पता</value>
+  </data>
+  <data name="ArabicName" xml:space="preserve">
+    <value>अरबी नाम</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>क्षेत्र</value>
+  </data>
+  <data name="Branch" xml:space="preserve">
+    <value>डाली</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>ब्रांड</value>
+  </data>
+  <data name="BuildingNumber" xml:space="preserve">
+    <value>भवन का नंबर</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>शहर</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>देश</value>
+  </data>
+  <data name="EnglishName" xml:space="preserve">
+    <value>अंग्रेज़ी नाम</value>
+  </data>
+  <data name="HotLine" xml:space="preserve">
+    <value>हॉटलाइन</value>
+  </data>
+  <data name="ImageValidation" xml:space="preserve">
+    <value>कृपया केवल छवि चुनें, कोई अन्य फ़ाइल नहीं</value>
+  </data>
+  <data name="Logo" xml:space="preserve">
+    <value>प्रतीक चिन्ह</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>चुनते हैं</value>
+  </data>
+  <data name="StreetName" xml:space="preserve">
+    <value>सड़क का नाम</value>
+  </data>
+  <data name="The" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>पिन कोड</value>
+  </data>
+  <data name="Captain" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CountOf" xml:space="preserve">
+    <value>की गिनती</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>दस्तावेज़</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>दस्तावेज़</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>कल्पना</value>
+  </data>
+  <data name="ImagesjpgValidation" xml:space="preserve">
+    <value>Jpg वाली छवि को ही स्वीकार किया जाएगा</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>आदेश</value>
+  </data>
+  <data name="UploadImages" xml:space="preserve">
+    <value>छवियाँ अपलोड करने के लिए यहां क्लिक करें</value>
+  </data>
+  <data name="CaptainsRequest" xml:space="preserve">
+    <value />
+  </data>
+  <data name="change" xml:space="preserve">
+    <value />
+  </data>
+</root>

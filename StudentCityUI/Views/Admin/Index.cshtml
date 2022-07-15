@@ -1,0 +1,544 @@
+﻿@model IEnumerable<StudentCity.DAL.Models.Permissions.Student>
+@using StudentCityUI.Resources
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    string cookie = HttpContextAccessor.HttpContext.Request.Cookies["currentLanguage"];
+    var lang = "ar";
+}
+
+<section class="default-section contact-part home-icon">
+    <div class="row">
+        <div class="col-md-3 col-xs-12">
+            <div class="form-group col-xs-12">
+                <select class="form-control" id="building" onchange="ChangeStudentTable()">
+                    <option value="0" id="SelectBuildValue">
+                        @Resource.Select @Resource.Building
+                    </option>
+                    @foreach (var item in ViewBag.buildings)
+                    {
+                        <option value="@item.Id" id="BuildingValue_@item.Id">
+                            @item.B_Number
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group col-xs-12">
+                <select class="form-control" id="grades" onchange="ChangeStudentTable()">
+                    <option value="0">
+                        @Resource.Select @Resource.Grade
+                    </option>
+                    @foreach (var item in ViewBag.grades)
+                    {
+                        <option value="@item.Id">
+                            @item.NameEn
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group col-xs-12">
+                <select class="form-control" id="colleges">
+                    <option value="0">
+                        @Resource.Select @Resource.College
+                    </option>
+                    @foreach (var item in ViewBag.colleges)
+                    {
+                        <option value="@item.Id">
+                            @item.NameEn
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group col-xs-12">
+                <select class="form-control" id="levels" onchange="ChangeStudentTable()">
+                    <option value="0">
+                        @Resource.Select @Resource.Level
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-xs-12">
+                <select class="form-control" id="governrates">
+                    <option value="0">
+                        @Resource.Select @Resource.Area
+                    </option>
+                    @foreach (var item in ViewBag.governrates)
+                    {
+                        <option value="@item.Id">
+                            @item.NameEn
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group col-xs-12">
+                <select class="form-control" id="cities" onchange="ChangeStudentTable()">
+                    <option value="0">
+                        @Resource.Select @Resource.City
+                    </option>
+                </select>
+            </div>
+            <div class="col-xs-10 col-xs-offset-1" id="buttonsSearch" style="display:none">
+                <button type="button" onclick="EnrollementAllModal(1)" class="button-danger">@Resource.Refuse</button>
+                <button type="button" onclick="EnrollementAllModal(2)" class="button-default button-default-black">@Resource.enroll</button>
+                <button type="button" onclick="EnrollementAllModal(3)" class="button-default button-default-black">@Resource.unenroll</button>
+            </div>
+        </div>
+        <div class="col-md-9 col-xs-12 table-responsive" id="DataSearching">
+            <h1 class="head text-center">Result : @Model.Count()</h1>
+            <table class="main-table text-center table table-bordered">
+                <tr>
+                    <th>
+                        @Resource.name
+                    </th>
+
+                    <th>
+                        @Resource.Image
+                    </th>
+                    <th>
+                        @Resource.Building
+                    </th>
+
+                    <th>
+                        @Resource.control
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+
+                    <tr id="student_@item.Id" style="height:100px">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.user.FirstName) @Html.DisplayFor(modelItem => item.user.LastName)
+                        </td>
+
+                        <td>
+                            <img alt="" src="@Html.DisplayFor(modelItem => item.user.Image)" style="height:100px;width:100px;" />
+                        </td>
+                        <td class="buildingNum">
+                            <span id="spanenroll_@item.Id">
+                                @if (item.Building == null)
+                                {
+                                    @Html.DisplayName(Resource.notenrolled)
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.Building.B_Number)
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            <button type="button" onclick="EnrollementModal(@item.Id,3)" class="button-danger">@Resource.Refuse</button>
+                            @{
+                                if (item.Building == null)
+                                {
+                                    <button type="button" id="EnrollBtn_@item.Id" onclick="EnrollementModal(@item.Id,1)" class="button-default button-default-black">
+                                        @Resource.enroll
+                                    </button>
+                                    <button type="button" id="UnEnrollBtn_@item.Id" onclick="EnrollementModal(@item.Id,2)" class="button-default button-default-black" style="display:none">
+                                        @Resource.unenroll
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="button" id="EnrollBtn_@item.Id" onclick="EnrollementModal(@item.Id,1)" class="button-default button-default-black" style="display:none">
+                                        @Resource.enroll
+                                    </button>
+                                    <input type="button" id="UnEnrollBtn_@item.Id" onclick="EnrollementModal(@item.Id,2)" class="button-default button-default-black" value="@Resource.unenroll" />
+
+
+                                }
+
+                            }
+
+                            @if (cookie != null)
+                            {
+                                var name = item.user.FirstName + " " + item.user.LastName;
+
+                                if (cookie == lang)
+                                {
+                                    <button type="button" onclick="detailsAction( '@name','@item.user.Image[0]','@Resource.Area : @item.city.Governrate.NameAr','@Resource.City : @item.city.NameAr','@item.College.NameAr','@item.College.Grade.NameAr','@item.College.Level')" class="button-default btn-action">@Resource.details</button>
+
+                                }
+                                else
+                                {
+                                    <button type="button" onclick="detailsAction('@name','@item.user.Image[0]','@Resource.Area : @item.city.Governrate.NameEn','@Resource.City : @item.city.NameEn','@item.College.NameEn','@item.College.Grade.NameEn','@item.College.Level')" class="button-default btn-action">@Resource.details</button>
+                                }
+                            }
+
+
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+
+    @*---------------------Priority--------------------------------*@
+    @*
+    <div id="ConfirmMessage" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="background-color:#ececec">
+
+                <div class="modal-body">
+
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title" style="color:#fff">@Resource.ConfirmMessage</h3>
+                    <div id="divBuildingModel" style="display:none">
+                        <select class="form-control" id="buildingModel">
+                            <option value="0">
+                                @Resource.Select @Resource.Building
+                            </option>
+                            @foreach (var item in ViewBag.buildings)
+                            {
+                                <option value="@item.Id" id="option_@item.Id">
+                                    @item.B_Number
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <h4 id="InsureMessage" style="color:#fff;display:none">
+                        @Resource.InsureMessage
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="Model-enroll-btn" class="button-default btn-primary-gold" onclick="Enroll(1)" style="display:none">@Resource.enroll</button>
+
+                    <button type="button" id="Model-unenroll-btn" class="button-default btn-primary-gold " onclick="Enroll(2)" style="display:none">@Resource.unenroll</button>
+
+                    <button type="button" id="Model-Refuse-btn" class="button-default btn-primary-gold " onclick="RejectStudent()" style="display:none">@Resource.Refuse</button>
+
+                    <button type="button" id="Model-Refuseall-btn" class="button-default btn-primary-gold " onclick="RejectAllStudent()" style="display:none">@Resource.Refuse @Resource.all</button>
+
+                    <button type="button" id="ModelEnrollAllBtn" class="button-default btn-primary-gold" onclick="searchEnrollAll()" style="display:none">@Resource.enroll @Resource.all</button>
+                    <button type="button" id="ModelUnEnrollAllBtn" class="button-default btn-primary-gold " onclick="searchUnEnrollAll()" style="display:none">@Resource.unenroll @Resource.all</button>
+
+                    <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    *@
+    <div class="modal" tabindex="-1" role="dialog" style="display:none" id="ConfirmMessage">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-color:#383848">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="color:#fff">@Resource.ConfirmMessage</h3>
+
+                </div>
+                <div class="modal-body">
+                    <div id="divBuildingModel" style="display:none">
+                        <select class="form-control" id="buildingModel">
+                            <option value="0">
+                                @Resource.Select @Resource.Building
+                            </option>
+                            @foreach (var item in ViewBag.buildings)
+                            {
+                                <option value="@item.Id" id="option_@item.Id">
+                                    @item.B_Number
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <h4 id="InsureMessage" style="color:#fff;display:none">
+                        @Resource.InsureMessage
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="Model-enroll-btn" class="button-default btn-primary-gold" onclick="Enroll(1)" style="display:none">@Resource.enroll</button>
+
+                    <button type="button" id="Model-unenroll-btn" class="button-default btn-primary-gold " onclick="Enroll(2)" style="display:none">@Resource.unenroll</button>
+
+                    <button type="button" id="Model-Refuse-btn" class="button-default btn-primary-gold " onclick="RejectStudent()" style="display:none">@Resource.Refuse</button>
+
+                    <button type="button" id="Model-Refuseall-btn" class="button-default btn-primary-gold " onclick="RejectAllStudent()" style="display:none">@Resource.Refuse @Resource.all</button>
+
+                    <button type="button" id="ModelEnrollAllBtn" class="button-default btn-primary-gold" onclick="searchEnrollAll()" style="display:none">@Resource.enroll @Resource.all</button>
+                    <button type="button" id="ModelUnEnrollAllBtn" class="button-default btn-primary-gold " onclick="searchUnEnrollAll()" style="display:none">@Resource.unenroll @Resource.all</button>
+
+                    <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal" tabindex="-1" role="dialog" style="display:none" id="detailsModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color:#383848">
+            <div class="modal-header">
+                <h3 class="modal-title" style="color:#fff" id="StudentName"></h3>
+
+            </div>
+            <div class="modal-body">
+                <div class="form-group col-xs-12 row">
+                    <div class="col-xs-3">
+                        <img alt="" id="StudentImg" style="transition: all 1s ease-in-out;
+  height: 150px;
+  width: 100px;
+  clip-path: polygon(50% 0%, 100% 0, 100% 80%, 70% 100%, 0 80%, 0 0);
+" />
+                    </div>
+                    <div class="col-xs-8" style="margin-left:20px">
+                        <h5 style="color:#fff" class="control-label" id="StudentCollege"></h5>
+                        <h5 style="color:#fff" class="control-label" id="StudentCollegeGrade"></h5>
+                        <h5 style="color:#fff" class="control-label" id="StudentCollegeLevel"></h5>
+                        <h5 style="color:#fff" class="control-label" id="StudentGovernrate"></h5>
+                        <h5 style="color:#fff" class="control-label" id="StudentCity"></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" class="button-default pull-right" onclick="hide()">@Resource.close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="hiddenBuildingId">
+<span hidden id="spanenroll_">@Resource.not @Resource.enrolled</span>
+@section scripts
+
+    {
+    <script>
+        var studentId = 0;
+        function hide() {
+            $("#ConfirmMessage").css("display", "none");
+            $("#detailsModal").css("display", "none");
+            $("#divBuildingModel").hide();
+            $("#Model-enroll-btn").hide();
+            $("#InsureMessage").hide();
+            $("#Model-unenroll-btn").hide();
+            $("#Model-Refuse-btn").hide();
+            $("#ModelEnrollAllBtn").hide();
+            $("#Model-Refuseall-btn").hide();
+            $("#ModelUnEnrollAllBtn").hide();
+        }
+        /*************************************************/
+        function EnrollementModal(id, enroll) {
+
+            $("#ConfirmMessage").css("display", "block");
+            if (enroll == 1) {
+                $("#divBuildingModel").show();
+                $("#Model-enroll-btn").show();
+            }
+            if (enroll == 2) {
+                $("#InsureMessage").show();
+                $("#Model-unenroll-btn").show();
+            }
+            if (enroll == 3) {
+                $("#InsureMessage").show();
+                $("#Model-Refuse-btn").show();
+            }
+            studentId = id;
+        }
+        /**********************EnrollementAllModal***************************/
+        function EnrollementAllModal(allAction) {
+
+            $("#ConfirmMessage").css("display", "block");
+            if (allAction == 1) {
+                $("#InsureMessage").show();
+                $("#Model-Refuseall-btn").show();
+            }
+            if (allAction == 2) {
+                $("#divBuildingModel").show();
+                $("#ModelEnrollAllBtn").show();
+            }
+            if (allAction == 3) {
+                $("#InsureMessage").show();
+                $("#ModelUnEnrollAllBtn").show();
+            }
+        }
+        /*********************************************************/
+        function Enroll(enroll) {
+            var urlEnroll = "";
+            if (enroll == 1) {
+
+                urlEnroll = "/Admin/Enroll?studentId=" + studentId + "&buildingId=" + $("#buildingModel").val();
+            }
+            else if (enroll == 2) {
+                urlEnroll = "/Admin/Enroll?studentId=" + studentId + "&buildingId=0";
+            }
+            hide();
+            $.ajax({
+                type: "POST",
+                url: urlEnroll,
+
+                success: function (response) {
+
+                    if (response == 0) {
+                        $("#EnrollBtn_" + studentId).show();
+                        $("#UnEnrollBtn_" + studentId).hide();
+                        $("#spanenroll_" + studentId).text($("#spanenroll_").text());
+
+                    }
+                    else if (response > 0) {
+                        $("#EnrollBtn_" + studentId).hide();
+                        $("#UnEnrollBtn_" + studentId).show();
+                        $("#spanenroll_" + studentId).text(response);
+                    }
+                    else if (response == -1) {
+                        Warning("Not Allowed As No Seats Available");
+                    }
+                    else {
+                        Warning("Failed");
+                    }
+                }, error: function () {
+                    Warning("Failed");
+                }
+
+            })
+
+        }
+        /************************************************************/
+        function ChangeStudentTable() {
+            $("#buttonsSearch").css('display', 'block');
+            $.ajax({
+                type: "Get",
+                url: "/Admin/Search",
+                contentType: "html",
+                data: getBoxParm(),
+                success: function (response) {
+                    $("#DataSearching").html(response);
+                }
+
+            })
+        }
+        /************************************************************/
+        function getBoxParm() {
+            var BoxParmData = {
+                building: $("#building").val(),
+                grade: $("#grades").val(),
+                college: $("#colleges").val(),
+                level: $("#levels").val(),
+                governrate: $("#governrates").val(),
+                city: $("#cities").val()
+            }
+            return BoxParmData;
+        }
+        /*******************************city********************/
+        $("#governrates").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/GetCity?id=" + $("#governrates").val(),
+
+                success: function (response) {
+                    $("#cities").empty();
+                    $("#cities").append("<option value='0'>Select City</option>");
+                    Array.prototype.forEach.call(response, function (entry) {
+                        $("#cities").append("<option value=" + entry.id + ">" + entry.nameEn + "</option>");
+                    })
+                }
+
+            })
+            ChangeStudentTable();
+        })
+        /*******************************Level********************/
+        $("#colleges").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/GetLevel?id=" + $("#colleges").val(),
+
+                success: function (response) {
+                    $("#levels").empty();
+                    $("#levels").append("<option value='0'>Select Level</option>");
+                    Array.prototype.forEach.call(response, function (entry) {
+                        $("#levels").append("<option value=" + entry + ">" + entry + "</option>");
+                    })
+                    ChangeStudentTable();
+                }
+
+            })
+
+        })
+        /*******************************searchUnEnrollAll********************/
+        function searchUnEnrollAll() {
+            hide();
+            $.ajax({
+                type: "GET",
+                url: "/Admin/UnEnrollAll",
+                contentType: "html",
+                data: getBoxParm(),
+                success: function (response) {
+                    $("#DataSearching").html(response);
+                    $("#SelectBuildValue").prop("selected", "selected");
+                }
+
+            })
+        }
+
+        /*******************************searchUnEnrollAll********************/
+        function searchEnrollAll() {
+            if ($("#buildingModel").val() == 0) {
+                Error("Select The Building Please");
+                return;
+            }
+            hide();
+            var EnrollData = getBoxParm();
+            EnrollData.buildingId = $("#buildingModel").val();
+            $.ajax({
+                type: "GET",
+                url: "/Admin/EnrollAll",
+                contentType: "html",
+                data: EnrollData,
+                success: function (response) {
+                    if (response < 0) {
+                        Warning("Not Allowed As Only " + (response * -1) + " Seats Available");
+                    }
+                   else if (response == 0) {
+                        Warning("Not Allowed As No Seats Available");
+                    }
+                    else {
+                        $("#DataSearching").html(response);
+                        $("#BuildingValue_" + $("#buildingModel").val()).prop("selected", "selected");
+                    }
+                }
+
+            })
+        }
+        /************************************************************/
+        function RejectStudent() {
+            hide();
+            $.ajax({
+                type: "Post",
+                url: "/Admin/Reject?id=" + studentId,
+                success: function (response) {
+                    if (response) {
+                        $("#student_" + studentId).remove();
+                        Success("Success");
+                    }
+                    else {
+                        Error("Error Occured");
+                    }
+                }
+
+            })
+        }
+        /************************************************************/
+        function RejectAllStudent() {
+            hide();
+            $.ajax({
+                type: "GET",
+                url: "/Admin/RejectAllStudent",
+                contentType: "html",
+                data: getBoxParm(),
+                success: function (response) {
+                    $("#DataSearching").html(response);
+                }
+
+            })
+        }
+        /************************************************************/
+        function detailsAction(name, image, governrate, city, college,grade,level) {
+            $("#detailsModal").css("display", "block");
+            $("#StudentImg").attr("src", image);
+            $("#StudentName").text(name);
+            $("#StudentCollege").text(college);
+            $("#StudentCollegeGrade").text(grade);
+            $("#StudentCollegeLevel").text(level);
+            $("#StudentGovernrate").text(governrate);
+            $("#StudentCity").text(city);
+        }
+    </script>
+}

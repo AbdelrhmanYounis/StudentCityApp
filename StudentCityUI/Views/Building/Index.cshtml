@@ -1,0 +1,137 @@
+﻿@model IEnumerable<StudentCity.DAL.Models.Permissions.Building>
+@using StudentCityUI.Resources
+
+<section class="default-section contact-part home-icon">
+    <div class="container">
+
+     
+        <a class="button-default btn-action" href="Building/Add">@Resource.Add @Resource.Building</a>
+        &nbsp; &nbsp;
+        <a class="button-default btn-action" href="/Admin/Index">@Resource.enroll @Resource.students</a>
+
+        <h1 class="head text-center">@Resource.List @Resource.Buildings</h1>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 card" id="Building_@item.Id">
+
+                    <div class="speciality-wrap" style="min-height:90px">
+                        <div><i class="ion" style="background-color:#16717f">@Html.DisplayFor(modelItem => item.B_Number)</i></div>
+                        <a href="#"></a>
+                    </div>
+                    <div class="col-lg-12 row">
+                        <ul class="col-lg-12">
+
+                            <li class="desc text-center col-lg-12">
+                                @Resource.NumOf @Resource.floors : @Html.DisplayFor(modelItem => item.B_Floors_Num)
+                            </li>
+                            <li class="desc text-center col-lg-12">
+                                @Resource.NumOf @Resource.rooms @Resource.In @Resource.each @Resource.floor : @Html.DisplayFor(modelItem => item.F_Rooms_num)
+                            </li>
+                            <li class="desc text-center col-lg-12">
+                                @Resource.NumOf @Resource.students @Resource.In @Resource.each @Resource.room : @Html.DisplayFor(modelItem => item.R_Students_num)
+                            </li>
+                            <li class="desc text-center col-lg-12">
+                                <a onclick="BuildingStatisticsModal(@item.Id)"><span>@Resource.BuildingStatistics</span></a>
+                            </li>
+                            <li class="desc text-center col-lg-12">
+                                <a onclick="window.location.href='/Student/Rooms?buildingId=@item.Id&floorNum=1'"><span>@Resource.students</span></a>
+                            </li>
+                            <li class="desc text-center col-lg-12 row" style="margin-top:20px">
+                                @Html.ActionLink(Resource.edit, "Edit", new { id = item.Id }, new { @class = "col-lg-6 button-default btn-primary-gold" })
+
+                                <button type="button" onclick="BuildingModalDelete(@item.Id)" class="col-lg-6 button-danger">@Resource.delete</button>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            }
+        </div>
+
+
+    </div>
+    @*---------------------BuildingStatisticsModal--------------------------------*@
+    <div id="BuildingStatisticsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="background-color:#ececec">
+
+                <div class="modal-body" id="BuildingStatisticsModalBody">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" style="display:none" id="delete">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-color:#383848">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="color:#fff">@Resource.ConfirmMessage</h3>
+
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:#fff">
+                        @Resource.deleteMessage
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button-default btn-primary-gold" onclick="Delete()">@Resource.delete</button>
+                    <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<input type="hidden" id="hiddenBuildingId">
+@section scripts
+
+    {
+    <script>
+       
+        function hide() {
+            $("#delete").css("display", "none");
+        }
+        /****************************************************************************/
+        function BuildingModalDelete(BuildingId) {
+
+            $("#delete").css("display", "block");
+            $("#hiddenBuildingId").val(BuildingId);
+        }
+        /************************************         **************/
+        function Delete() {
+            var BuildingId = $("#hiddenBuildingId").val();
+            hide();
+            $.ajax({
+                type: "POST",
+                url: "/Building/Delete?id=" + BuildingId,
+
+                success: function (response) {
+
+                    if (response) {
+                        $("#Building_" + BuildingId).remove();
+                        
+                    }
+                    else {
+                        alert("Failed");
+                    }
+                }
+
+            })
+
+        }
+        /******************************************************************/
+        function BuildingStatisticsModal  (buildingId) {
+
+            var url = "/Building/BuildingStatistics?id=" + buildingId;
+            $("#BuildingStatisticsModalBody").load(url, function () {
+
+                $("#BuildingStatisticsModal").modal('show');
+            })
+        }
+    </script>
+}

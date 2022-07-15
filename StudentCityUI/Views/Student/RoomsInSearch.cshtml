@@ -1,0 +1,72 @@
+﻿@model StudentCity.BL.Dtos.briefBuilding
+@using StudentCityUI.Models
+@using StudentCityUI.Helpers
+@using StudentCityUI.Resources
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+
+    string cookie = HttpContextAccessor.HttpContext.Request.Cookies["currentLanguage"];
+    var lang = "ar";
+   
+}
+
+@foreach (var item in Model.briefRoom)
+{
+    <div class="col-lg-4 card">
+
+        <div class="speciality-wrap" style="min-height:90px">
+            <div><i class="ion" style="background-color:#16717f">@Html.DisplayFor(model => item.RoomNum)</i></div>
+            <a href="#"></a>
+        </div>
+        <div class="col-lg-12">
+            <ul class="col-lg-12">
+                @if (item.briefStudent != null)
+                {
+
+                    if (cookie != null)
+                    {
+                        if (cookie == lang)
+                        {
+                            foreach (var subitem in item.briefStudent)
+                            {
+                                <li class="title text-center col-lg-12">
+                                    <a onclick="detailsAction('@subitem.Name','@subitem.Image','@Resource.Area : @subitem.City.Governrate.NameAr','@Resource.City : @subitem.City.NameAr','@subitem.College.NameAr')" style="color:#104f5e">@Html.DisplayFor(model => subitem.Name)</a>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            @foreach (var subitem in item.briefStudent)
+                            {
+                                <li class="title text-center col-lg-12">
+                                    <a onclick="detailsAction('@subitem.Name','@subitem.Image','@Resource.Area : @subitem.City.Governrate.NameEn','@Resource.City : @subitem.City.NameEn','@subitem.College.NameEn')" style="color:#104f5e">@Html.DisplayFor(model => subitem.Name)</a>
+                                </li>
+
+                            }
+                        }
+                    }
+                }
+            </ul>
+            <div style="height:50px;margin-bottom:0px" class="col-lg-12 text-center">
+
+                @{ CookiesManager cookiesManager = new CookiesManager(Context.Request, Context.Response);
+                    var token = cookiesManager.Get("token");
+                    // var IsAdmin = true;
+                    if (token != null)
+                    {
+                        if (JsonConverter.Deserialize(token).UserStudent)
+                        {
+                            // IsAdmin = false;
+                            if (item.briefStudent == null || ((item.briefStudent != null) && (item.briefStudent.Count() < 4)))
+                            {
+                                <button type="button" onclick="ReserveAction(@item.RoomNum)" class="button-default btn-action">@Resource.reserve</button>
+                            }
+
+                        }
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+}

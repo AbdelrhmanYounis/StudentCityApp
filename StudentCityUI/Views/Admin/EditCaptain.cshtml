@@ -1,0 +1,196 @@
+﻿@model StudentCity.DAL.Models.Permissions.UserModel
+@using StudentCityUI.Resources
+    @{
+        ViewData["Title"] = Resource.edit;
+
+        int[] Hours = new int[12];
+
+        for (int i = 0; i < 12; i++)
+        {
+            Hours[i] = i + 1;
+        }
+        string[] Types = { "AM", "PM" };
+    }
+
+    <section class="default-section contact-part home-icon">
+        <div class="icon-default">
+            <a href="#"><img src="/images/scroll-arrow.png" alt="" /></a>
+        </div>
+        <div class="container">
+            <div class="title">
+                
+                <div class="col-sm-6">
+                    <form asp-action="EditCaptain">
+                        <h2 class="text-coffee">
+                            @Resource.edit
+                        </h2>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="StartHour" id="StartHour" />
+                        <input type="hidden" asp-for="EndHour" id="EndHour" />
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">@Resource.firstName</label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label">@Resource.lastName</label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">@Resource.email</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">@Resource.mobile</label>
+                            <input asp-for="Mobile" class="form-control" />
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
+                        </div>
+                        <div class="row col-xs-12">
+                            <div class="row form-group col-xs-6">
+                                <label class="control-label col-xs-12">@Resource.start @Resource.work</label>
+                                <div class="col-xs-6">
+                                    <select id="StartHourN" class="form-control">
+                                        @foreach (var item in Hours)
+                                        {
+                                            if (Model.StartHour != null && item.ToString() == Model.StartHour.Split(" ")[0])
+                                            {
+
+                                                <option value="@item" selected>
+                                                    @item
+                                                </option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item">
+                                                    @item
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-xs-6">
+                                    <select id="StartHourT" class="form-control">
+                                        @foreach (var item in Types)
+                                        {
+                                            if (Model.StartHour != null && item.ToString() == Model.StartHour.Split(" ")[1])
+                                            {
+
+                                                <option value="@item" selected>
+                                                    @item
+                                                </option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item">
+                                                    @item
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group col-xs-6">
+                                <label class="control-label col-xs-12">@Resource.end @Resource.work</label>
+                                <div class="col-xs-6">
+                                    <select id="EndHourN" class="form-control">
+                                        @foreach (var item in Hours)
+                                        {
+
+                                            if (Model.EndHour != null && item.ToString() == Model.EndHour.Split(" ")[0])
+                                            {
+
+                                                <option value="@item" selected>
+                                                    @item
+                                                </option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item">
+                                                    @item
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-xs-6">
+                                    <select id="EndHourT" class="form-control">
+                                        @foreach (var item in Types)
+                                        {
+                                            if (Model.EndHour != null && item.ToString() == Model.EndHour.Split(" ")[1])
+                                            {
+
+                                                <option value="@item" selected>
+                                                    @item
+                                                </option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item">
+                                                    @item
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input asp-for="IsDisabled" /> @Html.DisplayNameFor(model => model.IsDisabled)
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="@Resource.save" class="button-default btn-primary-gold" />
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-6">
+                    @Html.ActionLink(Resource.backTo +" "+ Resource.List+" "+Resource.Captains, "Index", "Admin", null, new { @class = "tag-btn" })
+                </div>
+            </div>
+        </div>
+    </section>
+    @section scripts
+
+        {
+        <script>
+            (function () {
+
+                var N = $("#StartHourN").val();
+                var T = $("#StartHourT").val();
+                $("#StartHour").val(N + " " + T);
+
+                N = $("#EndHourN").val();
+                T = $("#EndHourT").val();
+                $("#EndHour").val(N + " " + T);
+            })();
+
+            $("#StartHourN").change(function () {
+                var N = $("#StartHourN").val();
+                var T = $("#StartHourT").val();
+                $("#StartHour").val(N + " " + T);
+            })
+            $("#StartHourT").change(function () {
+                var N = $("#StartHourN").val();
+                var T = $("#StartHourT").val();
+                $("#StartHour").val(N + " " + T);
+            })
+            $("#EndHourN").change(function () {
+                var N = $("#EndHourN").val();
+                var T = $("#EndHourT").val();
+                $("#EndHour").val(N + " " + T);
+            })
+            $("#EndHourT").change(function () {
+                var N = $("#EndHourN").val();
+                var T = $("#EndHourT").val();
+                $("#EndHour").val(N + " " + T);
+            })
+        </script>
+    }

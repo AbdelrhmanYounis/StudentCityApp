@@ -1,0 +1,41 @@
+﻿@model StudentCity.DAL.Models.Lookups.Governrate
+@using StudentCityUI.Resources
+
+<section class="default-section contact-part home-icon">
+   
+    <div class="container">
+        <div class="title">
+            
+            <div class="col-sm-6">
+                <form asp-action="Add">
+                    <h2 class="text-coffee">@Resource.Add @Resource.Area</h2>
+                    @if (ViewBag.CountryId != 0)
+                    {
+                        <input type="hidden" value="@ViewBag.CountryId" asp-for="Id" />
+                    }
+
+                    <div class="form-group">
+                        <input asp-for="NameEn" class="form-control" placeholder="@Resource.EnglishName" />
+                        <span asp-validation-for="NameEn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="NameAr" class="form-control" placeholder="@Resource.ArabicName" />
+                        <span asp-validation-for="NameAr" class="text-danger"></span>
+                    </div>
+                    @if (ViewBag.CountryId == 0)
+                    {
+                        <div class="form-group">
+                            @Html.DropDownListFor(x => x.Country.Id, new SelectList(ViewBag.countries, "Id", "NameEn"),Resource.Select + " "+ Resource.Country, new { @class = "form-control", required = "required" })
+                        </div>
+                    }
+                    <div class="form-group">
+                        <input type="submit" value="@Resource.save" class="button-default btn-primary-gold" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                @Html.ActionLink(Resource.backTo + " " + Resource.List + " " + Resource.Areas, "Index", "Governrate", new { id = ViewBag.CountryId }, new { @class = "tag-btn" })
+            </div>
+        </div>
+    </div>
+</section>

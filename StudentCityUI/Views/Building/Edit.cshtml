@@ -1,0 +1,38 @@
+﻿@model StudentCity.DAL.Models.Permissions.Building
+@using StudentCityUI.Resources
+@{
+    ViewData["Title"] = Resource.edit + " " + Resource.Building;
+}
+
+<section class="default-section contact-part home-icon">
+    <div class="container">
+        <div class="title">
+           
+            <div class="col-sm-6">
+                <form asp-action="Edit">
+                    <h2 class="text-coffee">
+                        @Resource.edit @Resource.Building
+                    </h2>
+                    <div class="form-group">
+                        <input asp-for="B_Number" type="number" class="form-control" placeholder="@Resource.Building" />
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="B_Floors_Num" type="number" class="form-control" placeholder="@Resource.NumOf @Resource.floors" />
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="F_Rooms_num" type="number" class="form-control" placeholder="@Resource.NumOf  @Resource.rooms @Resource.In @Resource.each @Resource.floor" />
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="R_Students_num" type="number" class="form-control" placeholder="@Resource.NumOf @Resource.students @Resource.In @Resource.each @Resource.room" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="@Resource.save" class="button-default btn-primary-gold" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                @Html.ActionLink(Resource.backTo + " " + Resource.List + " " + Resource.Buildings, "Index", "Building", null, new { @class = "tag-btn" })
+            </div>
+        </div>
+    </div>
+</section>

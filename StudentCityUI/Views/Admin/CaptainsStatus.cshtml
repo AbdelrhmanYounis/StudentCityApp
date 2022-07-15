@@ -1,0 +1,120 @@
+﻿@model IEnumerable<StudentCity.DAL.Models.Permissions.CaptainsRefusingModel>
+@using StudentCityUI.Resources
+
+
+<section class="default-section contact-part home-icon">
+    <div class="icon-default">
+        <a href="#"><img src="/images/scroll-arrow.png" alt="" /></a>
+    </div>
+    <div class="container">
+       
+        <div class="title">
+            <h1 class="head text-center">@Resource.List @Resource.Refuse @Resource.Captains</h1>
+            <div class="table-responsive">
+                <table class="main-table text-center table table-bordered">
+
+                    <tr>
+                        <td>
+                            @Html.Label(Resource.name)
+                        </td>
+                        <td>
+                            @Html.Label(Resource.RefusedTime)
+                        </td>
+                        <td>
+                            @Html.Label(Resource.RefusedReason)
+                        </td>
+                        <td>
+                            @Html.Label(Resource.control)
+                        </td>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+
+                    <tr id="CaptainRefusing_@item.Id">
+                        <td>
+                            <a href="/Profile/CaptainProfile/@item.UserModel.Id">
+                                @Html.DisplayFor(modelItem => item.UserModel.FirstName)
+                                
+                                @Html.DisplayFor(modelItem => item.UserModel.LastName)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RefusedReason.NameEn)
+                        </td>
+                        <td>
+
+                            <button type="button" onclick="CaptainRefusingModalDelete(@item.Id)" class="button-danger">@Resource.delete</button>
+
+                        </td>
+
+                    </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" style="display:none" id="delete">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-color:#383848">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="color:#fff">@Resource.ConfirmMessage</h3>
+
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:#fff">
+                        @Resource.deleteMessage
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button-default btn-primary-gold" onclick="Delete()">@Resource.delete</button>
+                    <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<input type="hidden" id="hiddenCaptainRefusingId">
+@section scripts
+
+    {
+    <script>
+
+        function hide() {
+            $("#delete").css("display", "none");
+        };
+        /*****************************************************************/
+        function CaptainRefusingModalDelete(CaptainRefusingId) {
+
+            $("#delete").css("display", "block");
+            $("#hiddenCaptainRefusingId").val(CaptainRefusingId);
+        };
+        /***********************************************************/
+        function Delete() {
+            var CaptainRefusingId = $("#hiddenCaptainRefusingId").val();
+            hide();
+            $.ajax({
+                type: "POST",
+                url: "/Admin/DeleteCaptainRefusing?id=" + CaptainRefusingId,
+
+                success: function (response) {
+
+                    if (response) {
+                        $("#CaptainRefusing_" + CaptainRefusingId).remove();
+                    }
+                    else {
+                        alert("Failed");
+                    }
+                }
+
+            })
+
+        }
+    </script>
+}

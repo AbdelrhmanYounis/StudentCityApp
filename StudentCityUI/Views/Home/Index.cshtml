@@ -1,0 +1,454 @@
+﻿@using StudentCityUI.Resources
+@using StudentCityUI.Models
+<!--=== header intro ===-->
+<section id="home" class="header-intro-1 d-flex align-items-center">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="header-intro-wrap text-center">
+                    <div class="header-intro-title"><h3>@Resource.HomeHeader </h3></div>
+                    <div class="header-intro-tag">
+                        @Resource.HomeBody
+                    </div>
+                    <ul class="list-inline">
+                        @*<li class="list-inline-item"><a href="/Account/LoginRegister" class="btn btn-primary main-btn bg-main">@Resource.GetStarted</a></li>*@
+                        @{
+                            CookiesManager cookiesManager = new CookiesManager(Context.Request, Context.Response);
+                            var token = cookiesManager.Get("token");
+
+                            if (token == null)
+                            {
+                                <li class="list-inline-item"><a onclick="LoginFun()" class="btn btn-primary main-btn bg-main">@Resource.GetStarted</a></li>
+                                <li class="list-inline-item"><a href="/Account/LoginRegister" class="btn btn-primary main-btn bg-green">@Resource.CreateAccount</a></li>
+                                <li class="list-inline-item"><a onclick="ModalApplyResult()" class="btn btn-primary main-btn bg-main">@Resource.applyResult</a></li>
+                            }
+
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=== feature ===-->
+<section id="feature" class="feature">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="section-tag">@Resource.OurProvided</div>
+                <div class="section-title mb-5"><h2>@Resource.LatestFeatures</h2></div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="feature-wrap">
+                    <div><i class="ion ion-ios-analytics-outline"></i></div>
+                    <a href="#">@Resource.Profiling</a>
+                    <p>
+                        @Resource.ProfilingBody
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="feature-wrap">
+                    <div><i class="ion ion-ios-browsers-outline"></i></div>
+                    <a href="#">
+                        @Resource.Recommendations
+                    </a>
+                    <p>
+                        @Resource.RecommendationsBody
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="feature-wrap">
+                    <div><i class="ion ion-ios-medkit-outline"></i></div>
+                    <a href="#">@Resource.Invitations</a>
+                    <p>
+                        @Resource.InvitationsBody
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="feature-wrap">
+                    <div><i class="ion ion-ios-book-outline"></i></div>
+                    <a href="#">@Resource.Reservation</a>
+                    <p>
+                        @Resource.ReservationBody
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=== about us ===-->
+<section id="about" class="about-us">
+    <div class="container-fluid">
+        <div class="section-heading heading text-center">
+            <div class="section-title"><h2>@Resource.aboutus</h2></div>
+            <div class="section-detail-para">
+                @Resource.aboutusHeader
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 align-self-center">
+                <p class="section-detail-para">
+                    @Resource.aboutusP1
+                </p>
+                <p class="section-detail-para">
+                    @Resource.aboutusP2
+                </p>
+                <p class="section-detail-para">
+                    @Resource.aboutusP3
+                </p>
+            </div>
+            <div class="col-lg-6 align-self-center">
+                <div class="about-image text-center">
+                    <div><img class="img-fluid" src="~/images/Home/about.jpg" alt="About Us"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- start Our Team Area -->
+<section class="our-Team-area clearfix" id="team">
+    <div class="container">
+        <div class="section-heading heading text-center">
+            <div class="section-title"><h2>@Resource.Team</h2></div>
+            <div class="section-detail-para">
+                @Resource.TeamBody
+            </div>
+        </div>
+        <div class="line-shape"></div>
+        <div class="slider slider_circle_10">
+            <div>
+                <div class="img"><img src="~/images/Team/younis.jpg"></div>
+                <div class="slider-desc">
+                    <h3>@Resource.AbdelrhmanGamalYounis</h3>
+                    <P>@Resource.TeamLeader</P>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="img"><img src="~/images/Team/foad.jpg"></div>
+                <div class="slider-desc">
+                    <h3>@Resource.MohamedEidFoad</h3>
+                    <P>@Resource.TeamMember</P>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="img"><img src="~/images/Team/mostafa.jpg"></div>
+                <div class="slider-desc">
+                    <h3>@Resource.MostafaKhaledAhmed</h3>
+                    <P>@Resource.TeamMember</P>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="img"><img src="~/images/Team/badea.jpg"></div>
+                <div class="slider-desc">
+                    <h3>@Resource.MohamedSayedBadea</h3>
+                    <P>@Resource.TeamMember</P>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="img"><img src="~/images/Team/shnwy.jpg"></div>
+                <div class="slider-desc">
+                    <h3>@Resource.MohamedElshnawy</h3>
+                    <P>@Resource.TeamMember</P>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="next_button"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+            <div class="prev_button"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
+            <div class="nav_indicators"></div>
+        </div>
+
+
+    </div>
+</section>
+<!-- End Our Team Area -->
+
+<section class="instagram-main home-icon wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" id="gallary">
+    <h3 class="col-xs-12" style="text-align:center">@Resource.Gallary</h3>
+    <div class="gallery-slider">
+
+        <div class="owl-carousel owl-theme" data-items="6" data-laptop="5" data-tablet="4" data-mobile="1" data-nav="true" data-dots="false" data-autoplay="true" data-speed="2000" data-autotime="3000">
+
+            <div class="item">
+                <a href="~/images/Home/m1.jpg" class="magnific-popup">
+                    <img src="~/images/Home/m1.jpg" alt="" class="animated" style="height:200px" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-inner">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="~/images/Home/m2.jpg" class="magnific-popup">
+                    <img src="~/images/Home/m2.jpg" alt="" class="animated" style="height:200px" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-inner">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="~/images/Home/m3.jpg" class="magnific-popup">
+                    <img src="~/images/Home/m3.jpg" alt="" class="animated" style="height:200px" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-inner">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="~/images/Home/m4.jpg" class="magnific-popup">
+                    <img src="~/images/Home/m4.jpg" alt="" class="animated" style="height:200px" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-inner">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="~/images/Home/m5.jpg" class="magnific-popup">
+                    <img src="~/images/Home/m5.jpg" alt="" class="animated" style="height:200px" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-inner">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="~/images/Home/m6.jpg" class="magnific-popup">
+                    <img src="~/images/Home/m6.jpg" alt="" class="animated" style="height:200px" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-inner">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="~/images/Home/m7.jpg" class="magnific-popup">
+                    <img src="~/images/Home/m7.jpg" alt="" class="animated" style="height:200px" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-inner">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="~/images/Home/m8.jpg" class="magnific-popup">
+                    <img src="~/images/Home/m8.jpg" alt="" class="animated" style="height:200px" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-inner">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="~/images/Home/m9.jpg" class="magnific-popup">
+                    <img src="~/images/Home/m9.jpg" alt="" class="animated" style="height:200px" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-inner">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="~/images/Home/m10.jpg" class="magnific-popup">
+                    <img src="~/images/Home/m10.jpg" alt="" class="animated" style="height:200px" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-inner">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="sections contact" id="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">@Resource.contactus</h2>
+            <div class="line">
+                <span></span>
+            </div>
+            <p>
+                @Resource.contactusBody
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div class="contact-info">
+                    <h3 class="contact-info-title">@Resource.contactusHeader</h3>
+
+                    <span>
+                        <i class="fa fa-map-marker"></i>
+                        15 Street Helwan
+                    </span>
+                    <br />
+                    <span>
+                        <i class="fa fa-phone"></i>
+                        1111 5555 3333
+                    </span>
+                    <br />
+                    <span>
+                        <i class="fa fa-envelope"></i>
+                        Email@gmail.com
+                    </span>
+                    <br />
+                    <span>
+                        <i class="fa fa-globe"></i>
+                        www.google.com
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <form action="">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="@Resource.name">
+                        <input class="form-control" type="email" placeholder="@Resource.email">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="@Resource.subject">
+                    </div>
+
+                    <textarea class="form-control" name="" placeholder="@Resource.yourMessage " cols="30" rows="10"></textarea>
+
+                    <button class="btn btn-secondary">@Resource.sendMessage</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+@*---------------------login--------------------------------*@
+<div id="loginModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" style="background-color:#ececec">
+
+            <div class="modal-body" id="loginBody">
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="applyResultModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3 class="modal-title" style="color:#fff">@Resource.applyResult</h3>
+
+            </div>
+            <div class="modal-body">
+
+                <h5>
+                    @Resource.applyResultMessage
+                </h5>
+                <div class="col-xs-12">
+
+                    <input id="SSNInput" type="text" name="Email" placeholder="@Resource.SSN" class="input-fields" data-val-required="The Email field is required." required data-valmsg-replace="true" />
+                </div>
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" class="button-default btn-primary-gold " onclick="applyResult()">@Resource.Result</button>
+                <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+
+    {
+    <script>
+        $(document).ready(function () {
+            $('.slider_circle_10').EasySlides({ 'autoplay': true, 'show': 5 })
+        });
+        /****************************************************************************/
+        function hide() {
+            //  $("#applyResult").css("display", "none");
+            $("#applyResultModal").modal('hide');
+        }
+        /****************************************************************************/
+        function ModalApplyResult() {
+
+            //  $("#applyResult").css("display", "block");
+            $("#applyResultModal").modal('show');
+
+        }
+        /*************************************************************************************/
+        var LoginFun = function () {
+
+            var url = "/Account/Login";
+            $("#loginBody").load(url, function () {
+
+                $("#loginModal").modal('show');
+            })
+        }
+        /****************************************************************************/
+        function applyResult() {
+            hide();
+            $.ajax({
+                type: "POST",
+                url: "/Home/ApplyResult?SSN=" + $("#SSNInput").val(),
+
+                success: function (response) {
+
+                    if (response == 0) {
+                        Warning("Sorry You Are Rejected");
+                    }
+                    else if (response == -1) {
+                        Warning("SSN Not Found");
+                    }
+                    else if (response == 1) {
+                        Info("If you can't LogIn wait untill Admin finish his Work");
+
+                    }
+                    else {
+                        Warning("Error Occured");
+                    }
+                }, error: function () {
+                    Error("Error");
+                }
+
+            })
+        }
+    </script>
+}

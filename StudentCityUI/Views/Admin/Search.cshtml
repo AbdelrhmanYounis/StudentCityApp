@@ -1,0 +1,77 @@
+﻿@model IEnumerable<StudentCity.DAL.Models.Permissions.Student>
+@using StudentCityUI.Resources
+
+<h1 class="head text-center">Result : @Model.Count()</h1>
+<table class="main-table text-center table table-bordered">
+    <tr>
+        <th>
+            @Resource.name
+        </th>
+
+        <th>
+            @Resource.Image
+        </th>
+        <th>
+            @Resource.Building
+        </th>
+
+        <th>
+            @Resource.control
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+
+        <tr id="student_@item.Id" style="height:100px">
+            <td>
+                @Html.DisplayFor(modelItem => item.user.FirstName) @Html.DisplayFor(modelItem => item.user.LastName)
+            </td>
+
+            <td>
+                <img alt="" src="@Html.DisplayFor(modelItem => item.user.Image)" style="height:100px;width:100px;" />
+            </td>
+            <td>
+                <span id="spanenroll_@item.Id">
+                    @if (item.Building == null)
+                    {
+                        @Html.DisplayName(Resource.not + " " + Resource.enrolled)
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Building.B_Number)
+                    }
+                </span>
+            </td>
+            <td>
+                <button type="button" onclick="captainModalDelete(@item.Id)" class="button-danger">@Resource.Refuse</button>
+                @{
+                    if (item.Building == null)
+                    {
+                        <button type="button" id="EnrollBtn_@item.Id" onclick="EnrollementModal(@item.Id,1)" class="button-default button-default-black">
+                            @Resource.enroll
+                        </button>
+                        <button type="button" id="UnEnrollBtn_@item.Id" onclick="EnrollementModal(@item.Id,2)" class="button-default button-default-black" style="display:none">
+                            @Resource.unenroll
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" id="EnrollBtn_@item.Id" onclick="EnrollementModal(@item.Id,1)" class="button-default button-default-black" style="display:none">
+                            @Resource.enroll
+                        </button>
+                        <input type="button" id="UnEnrollBtn_@item.Id" onclick="EnrollementModal(@item.Id,2)" class="button-default button-default-black" value="@Resource.unenroll" />
+
+
+                    }
+
+                }
+
+
+                <button type="button" onclick="captainModalDelete(@item.Id)" class="button-default btn-action">@Resource.details</button>
+
+            </td>
+
+        </tr>
+    }
+
+</table>

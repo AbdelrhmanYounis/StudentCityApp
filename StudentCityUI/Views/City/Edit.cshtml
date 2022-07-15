@@ -1,0 +1,110 @@
+﻿@model StudentCity.DAL.Models.Lookups.CityModel
+@using StudentCityUI.Resources
+@{
+    ViewData["Title"] = Resource.edit + " " + Resource.City;
+}
+
+<section class="default-section contact-part home-icon">
+    <div class="container">
+        <div class="title">
+            
+            <div class="col-sm-6">
+                <form asp-action="Edit">
+                    <h2 class="text-coffee">
+                        @Resource.edit @Resource.City
+                    </h2>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @if (ViewBag.GovernrateId != 0)
+                    {
+                        <input type="hidden" value="@Model.Governrate.Id" asp-for="Governrate.Id" />
+                    }
+                    <div class="form-group">
+                        <label class="control-label">@Resource.EnglishName</label>
+                        <input asp-for="NameEn" class="form-control" />
+                        <span asp-validation-for="NameEn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">@Resource.ArabicName</label>
+                        <input asp-for="NameAr" class="form-control" />
+                        <span asp-validation-for="NameAr" class=" text-danger"></span>
+                    </div>
+                    @if (ViewBag.AreaId == 0)
+                    {
+                        <div class="form-group">
+                            <label class="control-label">@Resource.The@Resource.Country</label>
+                            <select id="countriesDD" class="form-control" asp-for="Governrate.Country.Id" required>
+                                <option value="@Model.Governrate.Country.Id">
+                                    @Model.Governrate.Country.NameEn
+                                </option>
+                                @foreach (var item in ViewBag.countries)
+                                {
+                                    if (item.NameEn != Model.Governrate.Country.NameEn)
+                                    {
+
+                                        <option value="@item.Id">
+                                            @item.NameEn
+                                        </option>
+                                    }
+                                }
+                            </select>
+                            @*@Html.DropDownListFor(x => x.AreaModel.CountryModel.Id, new SelectList(ViewBag.countries, "Id", "NameEn"), new { @class = "select-dropbox", required = "required", @id = "countriesDD" })*@
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">@Resource.The@Resource.Area</label>
+                            <select id="areasDD" class="form-control" asp-for="Governrate.Id" required>
+                                <option value="@Model.Governrate.Id">
+                                    @Model.Governrate.NameEn
+                                </option>
+                                @foreach (var item in ViewBag.areas)
+                                {
+                                    if (item.NameEn != Model.Governrate.NameEn)
+                                    {
+
+                                        <option value="@item.Id">
+                                            @item.NameEn
+                                        </option>
+                                    }
+                                }
+                            </select>
+                            @*@Html.DropDownListFor(x => x.AreaModel.Id, new SelectList(ViewBag.areas, "Id", "NameEn"), new { @class = "form-control", required = "required", @id = "areasDD" })*@
+
+
+                        </div>
+                    }
+                    <div class="form-group">
+                        <input type="submit" value="@Resource.save" class="button-default btn-primary-gold" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                @Html.ActionLink(Resource.backTo + " " + Resource.List + " " + Resource.Cities, "Index", "City", new { id = ViewBag.GovernrateId }, new { @class = "tag-btn" })
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts
+
+    {
+    <script>
+        $("#countriesDD").change(function GetAreas() {
+            id = $("#countriesDD").val();
+            $("#areasDD").empty();
+            $.ajax({
+                type: "GET",
+                url: "/City/GetGovernrate?id=" + id,
+
+                success: function (response) {
+
+                    Array.prototype.forEach.call(response, function (entry) {
+                        $("#areasDD").append("<option value=" + entry.id + ">" + entry.nameEn + "</option>");
+                    })
+                }
+
+            })
+
+        })
+
+    </script>
+}

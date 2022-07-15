@@ -1,0 +1,149 @@
+﻿@model IEnumerable<StudentCity.DAL.Models.Lookups.RequestModel>
+@using StudentCityUI.Resources
+
+
+<section class="default-section contact-part home-icon">
+    <div class="icon-default">
+        <a href="#"><img src="/images/scroll-arrow.png" alt="" /></a>
+    </div>
+    <div class="container">
+
+        <div class="title">
+            <h1 class="head text-center">@Resource.List @Resource.CaptainsRequest</h1>
+            <div class="table-responsive">
+                <table class="main-table text-center table table-bordered">
+
+                    <tr>
+                        <td>
+                            @Html.Label(Resource.name)
+                        </td>
+                        <td>
+                            @Html.Label(Resource.start +" "+Resource.work)
+                        </td>
+                        <td>
+                            @Html.Label(Resource.end + " " + Resource.work)
+                        </td>
+                        <td>
+                            @Html.Label(Resource.control)
+                        </td>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr id="CaptainRefusing_@item.Id">
+                            <td>
+                                <a href="/Profile/CaptainProfile/@item.Captain.Id">
+                                    @Html.DisplayFor(modelItem => item.Captain.FirstName)
+
+                                    @Html.DisplayFor(modelItem => item.Captain.LastName)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartHour)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndHour)
+                            </td>
+                            <td>
+                                @{
+                                    if (item.requestStatus == 0)
+                                    {
+                                        <button type="button" onclick="ApproveRequest(@item.Id,@item.Captain.Id)" class="button-default btn-primary-gold">@Resource.Accept</button>
+                                        <button type="button" onclick="RefusedReasonsModal(@item.Id ,@item.Captain.Id)" class="button-danger">@Resource.Refuse</button>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => item.requestStatus)
+                                    }
+                                }
+                            </td>
+
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+<div class="modal" tabindex="-1" role="dialog" style="display:none" id="RefusedRequest">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color:#383848">
+            <div class="modal-header">
+                <h3 class="modal-title" style="color:#fff">@Resource.ConfirmMessage</h3>
+
+            </div>
+            <div class="modal-body">
+                <div class="form-group col-xs-12">
+                    <h5 style="color:#fff" class="control-label">@Resource.RefusedReason</h5>
+                    <select id="RefusedReasonDDRequest" class="form-control" required></select>
+                </div>
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" class="button-default btn-primary-gold" onclick="RefuseRequest()">@Resource.submit</button>
+                <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="CaptainId">
+<input type="hidden" id="RequestId">
+@section scripts
+
+    {
+    <script>
+
+        function hide() {
+            $("#RefusedRequest").css("display", "none");
+        };
+        /***********************************web api*****************************************/
+        function RefusedReasonsModal(RequestId, CaptainId) {
+            debugger
+            $("#RequestId").val(RequestId);
+            $("#CaptainId").val(CaptainId);
+            Get("Captain/GetAllRefusedReasons", function (response) {
+                $("#RefusedReasonDDRequest").empty();
+                Array.prototype.forEach.call(response, function (entry) {
+                    $("#RefusedReasonDDRequest").append("<option value=" + entry.id + ">" + entry.nameEn + "</option>");
+                })
+            });
+            $("#RefusedRequest").css("display", "block");
+        };
+        /**************************************web api **************************************/
+        function ApproveRequest(RequestId, CaptainId) {
+            
+            var RequestData={
+                CaptainId: CaptainId,
+                RequestId: RequestId
+            };
+            Post("Admin/Accept",RequestData, function (response) {
+                if (response) {
+                    alert("success");
+                }
+                else
+                    alert("failed");
+            } );
+        }
+        /***************************************web api*************************************/
+        function RefuseRequest() {
+           
+            hide();
+            debugger
+            var RequestData = {
+                CaptainId: $("#CaptainId").val(),
+                RequestId: $("#RequestId").val(),
+                RefuseId: $("#RefusedReasonDDRequest").val()
+            };
+            Post("Admin/Refuse", RequestData, function (response) {
+                if (response) {
+                    alert("success");
+                }
+                else
+                    alert("failed");
+            });
+        }
+    </script>
+}

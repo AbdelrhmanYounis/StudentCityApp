@@ -1,0 +1,253 @@
+﻿@model StudentCity.DAL.Models.Permissions.UserModel
+@using StudentCityUI.Resources
+@{
+    ViewData["Title"] = "Edit";
+    int[] Hours = new int[12];
+
+    for (int i = 0; i < 12; i++)
+    {
+        Hours[i] = i + 1;
+    }
+    string[] Types = { "AM", "PM" };
+}
+
+<section class="default-section contact-part home-icon">
+    <div class="icon-default">
+        <a href="#"><img src="/images/scroll-arrow.png" alt="" /></a>
+    </div>
+    <div class="container">
+        <div class="title">
+            <h2 class="text-coffee">@Html.DisplayFor(model => model.Roles[0].Name) Profile</h2>
+            <div class="col-sm-6">
+                <form id="myform">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input asp-for="Id" hidden />
+                    <input type="hidden" asp-for="StartHour" id="StartHour" />
+                    <input type="hidden" asp-for="EndHour" id="EndHour" />
+                    <div class="form-group col-xs-6">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" required />
+                        <span id="FirstNameValidation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" required />
+                        <span id="LastNameValidation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label asp-for="SSN" class="control-label"></label>
+                        <input asp-for="SSN" type="text" class="form-control" required />
+                        <span id="SSNValidation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label asp-for="BankAccount" class="control-label"></label>
+                        <input asp-for="BankAccount" type="text" class="form-control" required />
+                        <span id="BankAccountValidation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" type="email" class="form-control" required />
+                        <span id="EmailValidation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label asp-for="Mobile" class="control-label"></label>
+                        <input asp-for="Mobile" type="number" class="form-control" required />
+                        <span id="MobileValidation" class="text-danger"></span>
+                    </div>
+                    <div class="row col-xs-12">
+                        <div class="row form-group col-xs-6">
+                            <label class="control-label col-xs-12">@Resource.start @Resource.work</label>
+                            <div class="col-xs-6">
+                                <select id="StartHourN" class="form-control">
+                                    @foreach (var item in Hours)
+                                    {
+                                        if (Model.StartHour != null && item.ToString() == Model.StartHour.Split(" ")[0])
+                                        {
+
+                                            <option value="@item" selected>
+                                                @item
+                                            </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item">
+                                                @item
+                                            </option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-xs-6">
+                                <select id="StartHourT" class="form-control">
+                                    @foreach (var item in Types)
+                                    {
+                                        if (Model.StartHour != null && item.ToString() == Model.StartHour.Split(" ")[1])
+                                        {
+
+                                            <option value="@item" selected>
+                                                @item
+                                            </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item">
+                                                @item
+                                            </option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group col-xs-6">
+                            <label class="control-label col-xs-12">@Resource.end @Resource.work</label>
+                            <div class="col-xs-6">
+                                <select id="EndHourN" class="form-control">
+                                    @foreach (var item in Hours)
+                                    {
+
+                                        if (Model.EndHour != null && item.ToString() == Model.EndHour.Split(" ")[0])
+                                        {
+
+                                            <option value="@item" selected>
+                                                @item
+                                            </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item">
+                                                @item
+                                            </option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-xs-6">
+                                <select id="EndHourT" class="form-control">
+                                    @foreach (var item in Types)
+                                    {
+                                        if (Model.EndHour != null && item.ToString() == Model.EndHour.Split(" ")[1])
+                                        {
+
+                                            <option value="@item" selected>
+                                                @item
+                                            </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item">
+                                                @item
+                                            </option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" value="Save" class="button-default btn-primary-gold" id="save" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                @Html.ActionLink("Back To Profile", "Index", "Profile", null, new { @class = "tag-btn" })
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts
+    {
+    <script>
+        (function () {
+            var N = $("#StartHourN").val();
+            var T = $("#StartHourT").val();
+            $("#StartHour").val(N + " " + T);
+
+            N = $("#EndHourN").val();
+            T = $("#EndHourT").val();
+            $("#EndHour").val(N + " " + T);
+            $.ajax({
+                type: "Get",
+                url: "/Captain/GetCaptainId",
+                success: function (response) {
+                    if (response) {
+                        $("#Id").val(response);
+                    }
+                }
+
+            });
+        })();
+        $("#StartHourN").change(function () {
+            var N = $("#StartHourN").val();
+            var T = $("#StartHourT").val();
+            $("#StartHour").val(N + " " + T);
+        })
+        $("#StartHourT").change(function () {
+            var N = $("#StartHourN").val();
+            var T = $("#StartHourT").val();
+            $("#StartHour").val(N + " " + T);
+        })
+        $("#EndHourN").change(function () {
+            var N = $("#EndHourN").val();
+            var T = $("#EndHourT").val();
+            $("#EndHour").val(N + " " + T);
+        })
+        $("#EndHourT").change(function () {
+            var N = $("#EndHourN").val();
+            var T = $("#EndHourT").val();
+            $("#EndHour").val(N + " " + T);
+        })
+        /********************************************************************************/
+        $("#save").click(function () {
+
+            var number = /^(([0-9]*)|([0-9]*))$/;
+
+            var email = /^([a-zA-Z0-9_\-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+            if (($("#FirstName").val() == "")) {
+                $("#FirstNameValidation").text("Please enter valid Name");
+                return false;
+            }
+            else if (($("#LastName").val() == "")) {
+                $("#LastNameValidation").text("Please enter valid Name");
+                return false;
+            }
+            else if (($("#Email").val() == "") || (!email.test($("#Email").val()))) {
+                $("#EmailValidation").text("Please enter valid Email");
+                return false;
+            }
+            else if (($("#SSN").val() == "") || (!number.test($("#SSN").val()))) {
+                $("#SSNValidation").text("Please enter valid Social Security Number");
+                return false;
+            }
+            else if (($("#BankAccount").val() == "") || (!number.test($("#BankAccount").val()))) {
+                $("#BankAccountValidation").text("Please enter valid Bank Account");
+                return false;
+            }
+            else if (($("#Mobile").val() == "") || (!number.test($("#Mobile").val()))) {
+                $("#MobileValidation").text("Please enter valid Mobile");
+                return false;
+            }
+            else {
+
+                var formData = new FormData();
+                    var formData = {
+                    Id: $("#Id").val(),
+                    FirstName: $("#FirstName").val(),
+                    LastName: $("#LastName").val(),
+                    Mobile: $("#Mobile").val(),
+                    Email: $("#Email").val(),
+                    BankAccount: $("#BankAccount").val(),
+                    SSN: $("#SSN").val(),
+                    StartHour: $("#StartHour").val(),
+                    EndHour: $("#EndHour").val()
+                    };
+                debugger
+                     Post("Captain/Edit", formData, function (response) {
+                      if (response != null) {
+                        alert("success");
+                      }
+                    });
+            }
+        });
+    </script>
+}

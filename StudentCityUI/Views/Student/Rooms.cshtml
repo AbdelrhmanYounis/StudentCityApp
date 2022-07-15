@@ -1,0 +1,207 @@
+﻿@model StudentCity.BL.Dtos.briefBuilding
+@using StudentCityUI.Models
+@using StudentCityUI.Helpers
+@using StudentCityUI.Resources
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var BuildingNum = Model.BuildingNum;
+    var BuildingId = Model.BuildingId;
+
+    string cookie = HttpContextAccessor.HttpContext.Request.Cookies["currentLanguage"];
+    var lang = "ar";
+}
+<section>
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="header col-lg-12">
+                    <h1 class="head text-center">@Resource.Building @BuildingNum</h1>
+                </div>
+                <div class="col-xs-12 row" id="DataSearching">
+                    @foreach (var item in Model.briefRoom)
+                    {
+                        <div class="col-lg-4 card">
+
+                            <div class="speciality-wrap" style="min-height:90px">
+                                <div><i class="ion" style="background-color:#16717f">@Html.DisplayFor(model => item.RoomNum)</i></div>
+                                <a href="#"></a>
+                            </div>
+                            <div class="col-lg-12">
+                                <ul class="col-lg-12">
+                                    @if (item.briefStudent != null)
+                                    {
+
+                                        if (cookie != null)
+                                        {
+                                            if (cookie == lang)
+                                            {
+                                                foreach (var subitem in item.briefStudent)
+                                                {
+                                                    <li class="title text-center col-lg-12">
+                                                        <a onclick="detailsAction('@subitem.Name','@subitem.Image','@Resource.Area : @subitem.City.Governrate.NameAr','@Resource.City : @subitem.City.NameAr','@subitem.College.NameAr')" style="color:#104f5e">@Html.DisplayFor(model => subitem.Name)</a>
+                                                    </li>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @foreach (var subitem in item.briefStudent)
+                                                {
+                                                    <li class="title text-center col-lg-12">
+                                                        <a onclick="detailsAction('@subitem.Name','@subitem.Image','@Resource.Area : @subitem.City.Governrate.NameEn','@Resource.City : @subitem.City.NameEn','@subitem.College.NameEn')" style="color:#104f5e">@Html.DisplayFor(model => subitem.Name)</a>
+                                                    </li>
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                </ul>
+                                <div style="height:50px;margin-bottom:0px" class="col-lg-12 text-center">
+                                    @{ CookiesManager cookiesManager = new CookiesManager(Context.Request, Context.Response);
+                                        var token = cookiesManager.Get("token");
+                                        // var IsAdmin = true;
+                                        if (token != null)
+                                        {
+                                            if (JsonConverter.Deserialize(token).UserStudent)
+                                            {
+                                                // IsAdmin = false;
+                                                 if (item.briefStudent == null || ((item.briefStudent != null) && (item.briefStudent.Count() < 4)))
+                                                    {
+                                                        <button type="button" onclick="ReserveAction(@item.RoomNum)" class="button-default btn-action">@Resource.reserve</button>
+                                                    }
+                                                
+                                            }
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+                <div class="panel-heading col-lg-12" style="text-align:center">
+
+                    <button type="button" onclick="FloorAction(@BuildingId,1)" class="btn btn-action">1</button>
+                    <button type="button" onclick="FloorAction(@BuildingId,2)" class="btn btn-action">2</button>
+                    <button type="button" onclick="FloorAction(@BuildingId,3)" class="btn btn-action">3</button>
+                  
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- confirm message -->
+<div class="modal" tabindex="-1" role="dialog" style="display:none" id="ReservationModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color:#383848">
+            <div class="modal-header">
+                <h3 class="modal-title" style="color:#fff">@Resource.ConfirmMessage</h3>
+
+            </div>
+            <div class="modal-body">
+                <div class="form-group col-xs-12">
+                    <h5 style="color:#fff" class="control-label"> Do You Want To Reserve This Room  ?</h5>
+                </div>
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" class="button-default btn-primary-gold" onclick="Reserve()">@Resource.submit</button>
+                <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- details message-->
+
+<div class="modal" tabindex="-1" role="dialog" style="display:none" id="detailsModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color:#383848">
+            <div class="modal-header">
+                <h3 class="modal-title" style="color:#fff" id="StudentName"></h3>
+
+            </div>
+            <div class="modal-body">
+                <div class="form-group col-xs-12 row">
+                    <div class="col-xs-3">
+                        <img alt="" id="StudentImg" style="transition: all 1s ease-in-out;
+  height: 150px;
+  width: 100px;
+  clip-path: polygon(50% 0%, 100% 0, 100% 80%, 70% 100%, 0 80%, 0 0);
+" />
+                    </div>
+                    <div class="col-xs-8" style="margin-left:20px">
+                        <h5 style="color:#fff" class="control-label" id="StudentCollege"></h5>
+                        <h5 style="color:#fff" class="control-label" id="StudentGovernrate"></h5>
+                        <h5 style="color:#fff" class="control-label" id="StudentCity"></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" class="button-default pull-right" onclick="hide()">@Resource.close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+
+    {
+    <script>
+        var RoomNum = 0;
+        /************************************************************/
+        function hide() {
+            $("#ReservationModal").css("display", "none");
+            $("#detailsModal").css("display", "none");
+        }
+        /************************************************************/
+        function FloorAction(buldingId,floorNum) {
+            debugger
+            $.ajax({
+                type: "Get",
+                url: "/Student/RoomsInSearch?buildingId=" + buldingId +"&floorNum=" + floorNum,
+                contentType: "html",
+                success: function (response) {
+                    $("#DataSearching").html(response);
+                }
+
+            })
+        }
+        /************************************************************/
+        function ReserveAction(roomNum) {
+            RoomNum = roomNum;
+            $("#ReservationModal").css("display", "block");
+        }
+        /************************************************************/
+        function Reserve() {
+            hide();
+            if (RoomNum != 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Student/ReserveRoom?roomNum=" + RoomNum,
+
+                    success: function (response) {
+                        if (response) {
+                            Success("Success");
+                            FloorAction(RoomNum / 100);
+                        }
+                        else {
+                            Error("May you or your group close key or you haven't the privilege");
+                        }
+                    }
+                })
+            }
+            else
+                Error("Failed");
+        }
+        /************************************************************/
+        function detailsAction(name, image, governrate, city, college) {
+            $("#detailsModal").css("display", "block");
+            $("#StudentImg").attr("src", image);
+            $("#StudentName").text(name);
+            $("#StudentCollege").text(college);
+            $("#StudentGovernrate").text(governrate);
+            $("#StudentCity").text(city);
+        }
+    </script>
+}

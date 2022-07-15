@@ -1,0 +1,253 @@
+﻿@using StudentCityUI.Models
+@using StudentCityUI.Helpers
+@using StudentCityUI.Resources
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] @Resource.websiteName</title>
+    <environment names="Development, Production">
+
+        <!--============ All CSS Links ===========-->
+        <link rel="stylesheet" href="~/assets/bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css">
+        <link href="~/css/theme.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/assets/css/ionicons.css">
+        <link rel="stylesheet" href="~/assets/plugins/slick/slick.css">
+        <link rel="stylesheet" href="~/assets/css/app.css">
+        <link rel="stylesheet" href="~/assets/css/responsive.css">
+        <link href="~/assets/css/easy_slide.css" rel="stylesheet" />
+
+        <link href="~/plugin/owl-carousel/owl.carousel.css" rel="stylesheet" />
+        <link href="~/plugin/magnific/magnific-popup.css" rel="stylesheet" />
+
+        <link href="~/toastr/toastr.css" rel="stylesheet" />
+
+    </environment>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    @{
+        var controller = ViewContext.RouteData.Values["Controller"];
+        var action = ViewContext.RouteData.Values["Action"];
+
+        string cookie = HttpContextAccessor.HttpContext.Request.Cookies["currentLanguage"];
+        var lang = "ar";
+        if (cookie != null)
+        {
+            if (cookie == lang)
+            {
+                <link href="~/css/arabicTheme.css" rel="stylesheet">
+            }
+            else
+            {
+                <link href="~/css/theme.css" rel="stylesheet">
+                lang = "en";
+            }
+        }
+        else
+        {
+            <link href="~/css/theme.css" rel="stylesheet">
+            lang = "en";
+        }
+    }
+    <input type="hidden" value="@lang" name="language" id="languageHF" />
+
+    <!--=== navigation ===-->
+    <header id="nav" class="header">
+        <!-- menu -->
+        <div class="navbar navbar-expand-md navbar-light default-menu justify-content-between" role="navigation" style="background:linear-gradient(#16717f,#16717f, #16717f)">
+            <div class="container-fluid">
+                <a href="/Home/Index" class="site-logo navbar-brand">
+                    @Resource.websiteName
+                    <img src="~/images/SudentCityLogoPNG.png" alt="" style="height:100px" />
+                </a>
+                <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#v" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="v">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item active"><a class="nav-link scroll" href="/Home/Index">@Resource.home</a></li>
+
+                        @{
+                            CookiesManager cookiesManager = new CookiesManager(Context.Request, Context.Response);
+                            var token = cookiesManager.Get("token");
+
+                            if (token != null)
+                            {
+                                if (!JsonConverter.Deserialize(token).UserStudent)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#popupAdmin">
+                                            @Resource.services
+                                        </a>
+                                    </li>
+                                }
+                                else if (JsonConverter.Deserialize(token).UserStudent)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#popupStudent">
+                                            @Resource.services
+                                        </a>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="nav-item"><a class="nav-link scroll" href="#feature">@Resource.Features</a></li>
+                                <li class="nav-item"><a class="nav-link scroll" href="#about">@Resource.aboutus</a></li>
+                                <li class="nav-item"><a class="nav-link scroll" href="#team">@Resource.Team</a></li>
+                                <li class="nav-item"><a class="nav-link scroll" href="#gallary">@Resource.Gallary</a></li>
+                                <li class="nav-item"><a class="nav-link scroll" href="#contact">@Resource.contactus</a></li>
+                            }
+                        }
+
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+
+
+                        <li class="dropdown nav-item">
+                            @Html.Partial("_login")
+                        </li>
+                        &nbsp; &nbsp;
+                        <li>
+                            <a href="#" class="current-lang" onclick="changeLanguage('ar')">
+                                <img class="flag roundedimage" src="~/images/egypt.png" title="Arabic" alt="Arabic">
+                            </a>
+                            &nbsp; &nbsp;
+                            <a href="#" class="current-lang" onclick="changeLanguage('en')">
+                                <img class="flag" src="/images/usa_f8X_icon.ico" title="English" alt="English">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <!--=== offset canvas / sidebar ===-->
+    <div class="popup" id="popupAdmin">
+        <div class="popup-content">
+            <div class="left-slide-sidebar">
+                <div class="canvas-title">@Resource.adminservices</div>
+                <ul class="list-unstyled slide-sidebar">
+                    <li>@Html.ActionLink(Resource.manage + " " + Resource.restaurant, "Meal", "Admin", null)</li>
+                    <li>@Html.ActionLink(Resource.manage + " " + Resource.Buildings, "Index", "Building", null)</li>
+                    <li>@Html.ActionLink(Resource.manage + " " + Resource.Colleges, "Index", "College", null)</li>
+                    <li>@Html.ActionLink(Resource.manage + " " + Resource.Countries, "Index", "Country", null)</li>
+                    <li>@Html.ActionLink(Resource.manage + " " + Resource.Areas, "Index/0", "Governrate", null)</li>
+                    <li>@Html.ActionLink(Resource.manage + " " + Resource.Cities, "Index/0", "City", null)</li>
+                </ul>
+            </div>
+            <a href="#close" class="popup-close">&times;</a>
+        </div>
+    </div>
+    <div class="popup" id="popupStudent">
+        <div class="popup-content">
+            <div class="left-slide-sidebar">
+                <div class="canvas-title">@Resource.studentservices</div>
+                <ul class="list-unstyled slide-sidebar">
+                    <li>@Html.ActionLink(Resource.RecommendedStudent, "RecommendedStudent", "Student", null)</li>
+                    <li>@Html.ActionLink(Resource.RecommendedGroup, "RecommendedGroup", "Student", null)</li>
+                    <li>@Html.ActionLink(Resource.Invitations, "MyInvitation", "Student", null)</li>
+                    <li>@Html.ActionLink(Resource.rooms, "Rooms/buildingId?=1&&floorNum?=1", "Student", null)</li>
+                </ul>
+            </div>
+            <a href="#close" class="popup-close">&times;</a>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" style="display:none" id="forgetPasswordModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="color:#fff">@Resource.forgetPassowrdTitle</h3>
+
+                </div>
+                <div class="modal-body">
+
+                    <h5 style="color:#fff">
+                        @Resource.forgetPasswordMessage
+                    </h5>
+                    <div class="col-xs-12">
+
+                        <input id="ForgetPasswordInput" type="text" name="Email" placeholder="@Resource.email" class="input-fields" data-val-required="The Email field is required." required data-valmsg-replace="true" style="color:#fff" />
+                    </div>
+                </div>
+                <div class="modal-footer" style="border:none">
+                    <button type="button" class="button-default btn-primary-gold " onclick="ForgetPassword()">@Resource.send</button>
+                    <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--============ JavaScript ===========-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/toastr/toastr.js"></script>
+    <script src="/js/service.js"></script>
+    <script src="~/assets/bootstrap-4.0.0-beta.3-dist/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/plugins/slick/slick.min.js"></script>
+    <script src="~/assets/js/easy_slide.js"></script>
+    <script src="~/assets/js/app.js"></script>
+
+    <script src="/plugin/form-field/jquery.formstyler.min.js"></script>
+    <script src="/plugin/revolution-plugin/jquery.themepunch.plugins.min.js"></script>
+    <script src="/plugin/revolution-plugin/jquery.themepunch.revolution.min.js"></script>
+    <script src="/plugin/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/plugin/magnific/jquery.magnific-popup.min.js"></script>
+    <script src="/plugin/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/plugin/animation/wow.min.js"></script>
+    <script src="/plugin/parallax/jquery.stellar.js"></script>
+    <script src="/js/app.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+    @*language changes*@
+    <script>
+        function changeLanguage(lang) {
+      document.getElementById("languageHF").value = lang;
+      // $('#langForm').submit();
+      $.post("/Home/ChangeLanguage", { language: lang, actionName: '@action', controllerName: '@controller' }, function () {
+        window.location.href = "/@controller/@action";
+      });
+        }
+        /****************************************************************************/
+        function hide() {
+            $("#forgetPasswordModal").css("display", "none");
+        }
+        /****************************************************************************/
+        function ModalForgetPassword() {
+            $("#loginModal").modal('hide');
+            $("#forgetPasswordModal").css("display", "block");
+
+        }
+        /****************************************************************************/
+        function ForgetPassword() {
+            hide();
+            $.ajax({
+                type: "Post",
+                url: "/Account/ForgetPassword?email=" + $("#ForgetPasswordInput").val(),
+
+                success: function (response) {
+
+                    if (response) {
+                        Success("Email Sent");
+                    }
+                    else {
+                        Warning("Failed");
+                    }
+                }
+
+            })
+
+        }
+    </script>
+</body>
+</html>

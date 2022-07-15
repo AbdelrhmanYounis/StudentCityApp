@@ -1,0 +1,365 @@
+﻿@model StudentCity.DAL.Models.Permissions.Student
+@using StudentCityUI.Resources
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var c = 1;
+}
+<div class="modal-header">
+    <h3 class="modal-title" style="color:#fff">@Model.user.FirstName @Model.user.LastName</h3>
+</div>
+<div class="row col-lg-12">
+
+    <div class="col-lg-3">
+        <ul>
+            <li>
+                <span>@Resource.SleepStyle</span>
+            </li>
+
+            @{
+                c = 1;
+                if (Model.Sleep_Style.Is_SL_Night == 1)
+                {
+                    <li>
+                        @Resource.IsSLNight
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Resource.NotSLNight
+                    </li>
+                }
+                if (Model.Sleep_Style.Is_SL_Deep == 1)
+                {
+                    <li>
+                        @Resource.IsSLDeep
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Resource.NotSLDeep
+                    </li>
+                }
+                if (Model.Sleep_Style.Is_SL_Continuity == 1)
+                {
+                    <li>
+                        @Resource.IsSLContinuity
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Resource.NotSLContinuity
+                    </li>
+                }
+                <li>
+                    <span>  @Resource.sleeplessnessConditions</span>
+                </li>
+                if (Model.Sleep_Style.Is_SL_Lightness == 1)
+                {
+                    c = 0;
+                    <li>
+                        @Resource.Lightness
+                    </li>
+                }
+                if (Model.Sleep_Style.Is_SL_Lightness == 1)
+                {
+                    c = 0;
+                    <li>
+                        @Resource.Noisy
+                    </li>
+                }
+                if (c == 1)
+                {
+                    <li>
+                        @Resource.NotFound
+                    </li>
+                }
+            }
+
+        </ul>
+    </div>
+    <div class="col-lg-3">
+
+        <ul>
+            <li>
+                <span>@Resource.StudyStyle</span>
+            </li>
+            @{
+                c = 1;
+                <li>
+                    @Resource.AttendingCollege
+                    @if (Model.Study_Style.Is_ST_AttendingCollege == 1)
+                    {
+                        <i class="ion ion-ios-circle-filled Found"></i>
+
+                    }
+                    else
+                    {
+                        <i class="ion ion-ios-circle-filled NotFound"></i>
+                    }
+                </li>
+                <li>
+                    @Resource.IsSTIndividual
+                    @if (Model.Study_Style.Is_ST_Individual == 0)
+                    {
+                        <i class="ion ion-ios-circle-filled Found"></i>
+
+                    }
+                    else
+                    {
+                        <i class="ion ion-ios-circle-filled NotFound"></i>
+                    }
+                </li>
+                if (Model.Study_Style.Is_ST_Continuity == 1)
+                {
+                    <li>
+                        @Resource.IsSTContinuity
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Resource.NotSTContinuity
+                    </li>
+                }
+
+                var controller = ViewContext.RouteData.Values["Controller"];
+                var action = ViewContext.RouteData.Values["Action"];
+
+                string cookie = HttpContextAccessor.HttpContext.Request.Cookies["currentLanguage"];
+                var lang = "ar";
+                if (cookie != null)
+                {
+                    if (cookie == lang)
+                    {
+                        <li>
+                            @Model.Study_Style.study_way.NameAr
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            @Model.Study_Style.study_way.NameEn
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+
+    <div class="col-lg-3">
+        <ul>
+            <li>
+                <span>@Resource.ActivitiesStyle</span>
+            </li>
+
+            @{
+                <li>
+                    @Resource.IsACLoveGames
+                    @if (Model.Activities_Style.Is_AC_LoveGames)
+                    {
+                        <i class="ion ion-ios-circle-filled Found"></i>
+
+                    }
+                    else
+                    {
+                        <i class="ion ion-ios-circle-filled NotFound"></i>
+                    }
+                </li>
+                <li>
+                    @Resource.LoveHargingOut
+                    @if (Model.Activities_Style.Is_AC_LoveHargingOut)
+                    {
+                        <i class="ion ion-ios-circle-filled Found"></i>
+
+                    }
+                    else
+                    {
+                        <i class="ion ion-ios-circle-filled NotFound"></i>
+                    }
+                </li>
+                <li>
+                    @Resource.Prayingpersevering
+                    @if (Model.Activities_Style.Is_AC_PrayingInMosque)
+                    {
+                        <i class="ion ion-ios-circle-filled Found"></i>
+
+                    }
+                    else
+                    {
+                        <i class="ion ion-ios-circle-filled NotFound"></i>
+                    }
+                </li>
+                <li>
+                    @Resource.QuranTimeSpecialization
+                    @if (Model.Activities_Style.Is_AC_QuranTimeSpecialization)
+                    {
+                        <i class="ion ion-ios-circle-filled Found"></i>
+
+                    }
+                    else
+                    {
+                        <i class="ion ion-ios-circle-filled NotFound"></i>
+                    }
+                </li>
+
+            }
+        </ul>
+    </div>
+
+    <div class="col-lg-3">
+        <ul>
+            <li>
+                <span>@Resource.HobbiesStyle</span>
+            </li>
+            <li>
+                @Resource.IsHSport
+                @if (Model.Hobbies_Style.Is_H_Sport)
+                {
+                    <i class="ion ion-ios-circle-filled Found"></i>
+
+                }
+                else
+                {
+                    <i class="ion ion-ios-circle-filled NotFound"></i>
+                }
+            </li>
+            <li>
+                @Resource.IsHArts
+                @if (Model.Hobbies_Style.Is_H_Arts)
+                {
+                    <i class="ion ion-ios-circle-filled Found"></i>
+
+                }
+                else
+                {
+                    <i class="ion ion-ios-circle-filled NotFound"></i>
+                }
+            </li>
+            <li>
+                @Resource.IsHsociaty
+                @if (Model.Hobbies_Style.Is_H_sociaty)
+                {
+                    <i class="ion ion-ios-circle-filled Found"></i>
+
+                }
+                else
+                {
+                    <i class="ion ion-ios-circle-filled NotFound"></i>
+                }
+            </li>
+            <li>
+                @Resource.IsHCulture
+                @if (Model.Hobbies_Style.Is_H_Culture)
+                {
+                    <i class="ion ion-ios-circle-filled Found"></i>
+
+                }
+                else
+                {
+                    <i class="ion ion-ios-circle-filled NotFound"></i>
+                }
+            </li>
+            <li>
+                @Resource.IsHReligion
+                @if (Model.Hobbies_Style.Is_H_Religion)
+                {
+                    <i class="ion ion-ios-circle-filled Found"></i>
+
+                }
+                else
+                {
+                    <i class="ion ion-ios-circle-filled NotFound"></i>
+                }
+            </li>
+
+        </ul>
+    </div>
+    <div class="avatar col-lg-3">
+        <img alt="" src="@Model.user.Image[0]">
+    </div>
+    <div class="col-lg-3">
+
+        <ul>
+            <li>
+                <span>@Resource.FoodStyle</span>
+            </li>
+            <li>
+                @Resource.IsFIndividual
+                @if (Model.Food_Style.Is_F_Individual == 0)
+                {
+                    <i class="ion ion-ios-circle-filled Found"></i>
+
+                }
+                else
+                {
+                    <i class="ion ion-ios-circle-filled NotFound"></i>
+                }
+            </li>
+            @if (Model.Food_Style.Is_F_FastFood == 1)
+            {
+                <li>
+                    @Resource.FastFood
+                </li>
+            }
+            else
+            {
+                <li>
+                    @Resource.Cooking
+                </li>
+            }
+        </ul>
+
+    </div>
+    <div class="col-lg-3">
+        <ul>
+            <li>
+                <span> @Resource.CharacterStyle</span>
+            </li>
+            @{
+                if (Model.Character_Style.Is_CH_Social == 1)
+                {
+                    <li>
+                        @Resource.Social
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Resource.Introvert
+                    </li>
+                }
+                if (Model.Character_Style.Is_CH_Curcious == 1)
+                {
+                    <li>
+                        @Resource.Curious
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Resource.Borderline
+                    </li>
+                }
+                if (Model.Character_Style.Is_CH_Ambitious == 1)
+                {
+                    <li>
+                        @Resource.Ambitious
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Resource.Imitative
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+
+</div>
+<div class="modal-footer" style="border:none">
+    <button type="button" class="button-default" onclick="hide()">Close</button>
+</div>

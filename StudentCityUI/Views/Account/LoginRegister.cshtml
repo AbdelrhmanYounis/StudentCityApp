@@ -1,0 +1,765 @@
+﻿@model StudentCity.DAL.Models.Permissions.Student
+@using StudentCityUI.Resources
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    string cookie = HttpContextAccessor.HttpContext.Request.Cookies["currentLanguage"];
+    var lang = "ar";
+}
+<div class="main-part">
+
+    <section class="home-icon login-register bg-skeen">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                    <form asp-action="Register" class="register-form" method="post" enctype="multipart/form-data">
+                        <div class="register-wrap form-common">
+                            <div class="title text-center">
+                                <h3 class="text-coffee">@Resource.register</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="FirstNameInput" onkeyup="allLetter('FirstNameInput',0)" placeholder="@Resource.firstName" class="input-fields" data-val-required="The First Name field is required." required data-valmsg-replace="true" />
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="LastNameInput" onkeyup="allLetter('LastNameInput',1)" placeholder="@Resource.lastName" class="input-fields" data-val-required="The Last Name field is required." required data-valmsg-replace="true" />
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    <input type="text" id="SSNInput" onkeyup="allNumber('SSNInput',2)" placeholder="@Resource.SSN" class="input-fields" data-val-required="The Social Security Number field is required." required data-valmsg-replace="true" />
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="MobileInput" onkeyup="allNumber('MobileInput',3)" placeholder="@Resource.mobile" class="input-fields" data-val-required="The Mobile field is required." required data-valmsg-replace="true" />
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="EmailInput" onkeyup="IsEmail('EmailInput',4)"  placeholder="@Resource.email" class="input-fields" data-val-required="The Email field is required." required data-valmsg-replace="true" />
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="password" id="HashedPasswordInput" onkeyup="IsPassword('HashedPasswordInput',5)"placeholder="@Resource.password" class="input-fields" data-val-required="The Password field is required." required data-valmsg-replace="true" />
+                                </div>
+                                @if (cookie != null)
+                                {
+                                    if (cookie == lang)
+                                    {
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">@Resource.College</label>
+                                            @Html.DropDownListFor(x => x.College.Id, new SelectList(ViewBag.colleges, "Id", "NameAr"), Resource.Select + Resource.College, new { @class = "form-control", required = "required", @id = "CollegesDD", @onchange = "IsChoiced('CollegesDD',6)" })
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">@Resource.Grade</label>
+                                            @Html.DropDownListFor(x => x.College.Grade.Id, new SelectList(ViewBag.Grades, "Id", "NameAr"), Resource.Select + Resource.Grade, new { @class = "form-control", required = "required", @id = "GradeInput", @onchange = "IsChoiced('GradeInput',7)" })
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">@Resource.Level</label>
+                                            @Html.DropDownListFor(x => x.College.Level, new List<SelectListItem>(), new { @class = "form-control", required = "required", @id = "LevelsDD", @onchange = "IsChoiced('LevelsDD',8)" })
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">@Resource.Country</label>
+                                            @Html.DropDownListFor(x => x.city.Governrate.Country.Id, new SelectList(ViewBag.countries, "Id", "NameAr"), Resource.Select + " " + Resource.Country, new { @class = "form-control", required = "required", @id = "countriesDD", @onchange = "IsChoiced('countriesDD',9)" })
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">@Resource.Area</label>
+                                            @Html.DropDownListFor(x => x.city.Governrate.Id, new List<SelectListItem>(), new { @class = "form-control", required = "required", @id = "areasDD", @onchange = "IsChoiced('areasDD',10)" })
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">@Resource.City</label>
+                                            @Html.DropDownListFor(x => x.city.Id, new List<SelectListItem>(), new { @class = "form-control", required = "required", @id = "citiesDD", @onchange = "IsChoiced('citiesDD',11)" })
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">@Resource.College</label>
+                                            @Html.DropDownListFor(x => x.College.Id, new SelectList(ViewBag.colleges, "Id", "NameEn"), Resource.Select + Resource.College, new { @class = "form-control", required = "required", @id = "CollegesDD", @onchange = "IsChoiced('CollegesDD',6)" })
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">Grade</label>
+                                            @Html.DropDownListFor(x => x.College.Grade.Id, new SelectList(ViewBag.Grades, "Id", "NameEn"), Resource.Select + "Grade", new { @class = "form-control", required = "required", @id = "GradeInput" , @onchange = "IsChoiced('GradeInput',7)" })
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">Level</label>
+                                            @Html.DropDownListFor(x => x.College.Level, new List<SelectListItem>(), new { @class = "form-control", required = "required", @id = "LevelsDD", @onchange = "IsChoiced('LevelsDD',8)" })
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">@Resource.Country</label>
+                                            @Html.DropDownListFor(x => x.city.Governrate.Country.Id, new SelectList(ViewBag.countries, "Id", "NameEn"), Resource.Select + " " + Resource.Country, new { @class = "form-control", required = "required", @id = "countriesDD", @onchange = "IsChoiced('countriesDD',9)" })
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">@Resource.Area</label>
+                                            @Html.DropDownListFor(x => x.city.Governrate.Id, new List<SelectListItem>(), new { @class = "form-control", required = "required", @id = "areasDD", @onchange = "IsChoiced('areasDD',10)" })
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                            <label class="control-label">@Resource.City</label>
+                                            @Html.DropDownListFor(x => x.city.Id, new List<SelectListItem>(), new { @class = "form-control", required = "required", @id = "citiesDD", @onchange = "IsChoiced('citiesDD',11)" })
+                                        </div>
+                                    }
+                                }
+                                @*<div class="col-md-12 col-sm-12 col-xs-12">
+            <input type="password" name="confirmPassword" placeholder="@Resource.confirmPassword" class="input-fields" data-val-required="The Confirm Password field is required." data-valmsg-replace="true" />
+        </div>*@
+                            </div>
+                            <div class="row" style="margin-top:50px">
+                                <div class="col-md-3 col-xs-12">
+                                    <label class="control-label col-xs-12">@Resource.SleepStyle</label>
+                                    <div class="col-md-12 col-xs-12">
+                                        
+                                        <select class="form-control col-xs-12" onchange="IsChoiced('Is_SL_NightInput',12)" id="Is_SL_NightInput" required>
+                                            <option value="-1">
+                                                -- Preferable Time --
+                                            </option>
+                                            <option value="1">
+                                                Night Sleep
+                                            </option>
+                                            <option value="0">
+                                                Day Sleep
+                                            </option>
+                                        </select>
+                                        <select class="form-control" id="Is_SL_LightnessInput"  onchange="IsChoiced('Is_SL_LightnessInput',13)" required style="margin-top:10px">
+                                            <option value="-1">
+                                                -- Light existence --
+                                            </option>
+                                            <option value="0">
+                                                Never Mind
+                                            </option>
+                                            <option value="1">
+                                                Cause annoying
+                                            </option>
+                                        </select>
+                                        <select class="form-control" id="Is_SL_NoisyInput" onchange="IsChoiced('Is_SL_NoisyInput',14)" required style="margin-top:10px">
+                                            <option value="-1">
+                                                -- Noisy existence --
+                                            </option>
+                                            <option value="0">
+                                                Never Mind
+                                            </option>
+                                            <option value="1">
+                                                Cause annoying
+                                            </option>
+                                        </select>
+                                        <select class="form-control" id="Is_SL_DeepInput" onchange="IsChoiced('Is_SL_DeepInput',15)" required style="margin-top:10px">
+                                            <option value="-1">
+                                                -- Status --
+                                            </option>
+                                            <option value="1">
+                                                Deep Sleep
+                                            </option>
+                                            <option value="0">
+                                                Light Sleep
+                                            </option>
+                                        </select>
+                                        <select class="form-control" id="Is_SL_ContinuityInput" onchange="IsChoiced('Is_SL_ContinuityInput',16)" required style="margin-top:10px">
+                                            <option value="-1">
+                                                -- Interval --
+                                            </option>
+                                            <option value="1">
+                                                Continuous Sleep
+                                            </option>
+                                            <option value="0">
+                                                Section Sleep
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-xs-12">
+                                    <label class="control-label col-xs-12">Study Style</label>
+                                    <div class="col-md-12 col-xs-12 ">
+                                        @Html.DropDownListFor(x => x.Study_Style.study_way.Id, new SelectList(ViewBag.studyWays, "Id", "NameEn"), "-- Study Way --", new { @class = "form-control", required = "required", @id = "study_wayInput" , @onchange = "IsChoiced('study_wayInput',17)" })
+
+                                        <select class="form-control" id="Is_ST_ContinuityInput" onchange="IsChoiced('Is_ST_ContinuityInput',18)" required style="margin-top:10px">
+                                            <option value="-1">
+                                                -- Time Review --
+                                            </option>
+                                            <option value="1">
+                                                Continuous Review
+                                            </option>
+                                            <option value="0">
+                                                Examinee Review
+                                            </option>
+                                        </select>
+
+                                        <select class="form-control" id="Is_ST_IndividualInput" onchange="IsChoiced('Is_ST_IndividualInput',19)" required style="margin-top:10px">
+                                            <option value="-1">
+                                                -- Group Review --
+                                            </option>
+                                            <option value="1">
+                                                Prefer Grouping
+                                            </option>
+                                            <option value="0">
+                                                Prefer Individuality
+                                            </option>
+                                        </select>
+
+                                        <select class="form-control" id="Is_ST_AttendingCollegeInput"  onchange="IsChoiced('Is_ST_AttendingCollegeInput',20)" required style="margin-top:10px">
+                                            <option value="-1">
+                                                -- Attending College --
+                                            </option>
+                                            <option value="1">
+                                                @Resource.Caring
+                                            </option>
+                                            <option value="0">
+                                                @Resource.Uncaring
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-xs-12">
+                                    <label class="control-label col-xs-12">Character Style</label>
+                                    <div class="col-md-12 col-xs-12 ">
+                                        <select class="form-control" id="Is_CH_SocialInput" onchange="IsChoiced('Is_CH_SocialInput',21)" required>
+                                            <option value="-1">
+                                              --  @Resource.Select --
+                                            </option>
+                                            <option value="1">
+                                                @Resource.Social
+                                            </option>
+                                            <option value="0">
+                                                @Resource.Introvert
+                                            </option>
+                                        </select>
+
+                                        <select class="form-control" id="Is_CH_CurciousInput" onchange="IsChoiced('Is_CH_CurciousInput',22)" required style="margin-top:10px">
+                                            <option value="-1">
+                                                --  @Resource.Select --
+                                            </option>
+                                            <option value="1">
+                                                @Resource.Curious
+                                            </option>
+                                            <option value="0">
+                                                @Resource.Borderline
+                                            </option>
+                                        </select>
+
+                                        <select class="form-control" id="Is_CH_AmbitiousInput" onchange="IsChoiced('Is_CH_AmbitiousInput',23)" required style="margin-top:10px">
+                                            <option value="-1">
+                                                --  @Resource.Select --
+                                            </option>
+                                            <option value="1">
+                                                @Resource.Ambitious
+                                            </option>
+                                            <option value="0">
+                                                @Resource.Imitative
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-xs-12">
+                                    <label class="control-label col-xs-12">Food Style</label>
+                                    <div class="col-md-12 col-xs-12 ">
+                                        <select class="form-control" id="Is_F_FastFoodInput" onchange="IsChoiced('Is_F_FastFoodInput',24)" required>
+                                            <option value="-1">
+                                                -- Preparing Way --
+                                            </option>
+                                            <option value="1">
+                                                Prefer FastFood
+                                            </option>
+                                            <option value="0">
+                                                Prefer Cooking
+                                            </option>
+                                        </select>
+                                        <select class="form-control" id="Is_F_IndividualInput" onchange="IsChoiced('Is_F_IndividualInput',25)" required style="margin-top:10px">
+                                            <option value="-1">
+                                                -- Group Food --
+                                            </option>
+                                            <option value="1">
+                                                Prefer Grouping
+                                            </option>
+                                            <option value="0">
+                                                Prefer Individuality
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:50px">
+                                <div class="col-md-6 col-xs-12" style="display:none">
+                                    <label class="control-label col-xs-12">Hobbies Style</label>
+                                    <div class="col-md-6 col-xs-6">
+
+
+                                        <div class="col-md-12 col-xs-12">
+                                            <input type="checkbox" id="Is_H_CultureInput" />
+                                            <label>
+                                                Cultural Activist
+                                            </label>
+                                        </div>
+                                        <div class="col-md-12 col-xs-12">
+                                            <input type="checkbox" id="Is_H_sociatyInput">
+                                            Social Activist
+                                        </div>
+                                        <label class="col-md-12 col-xs-12">
+                                            <input type="checkbox" id="Is_H_ReligionInput">
+                                            Religious Activist
+                                        </label>
+                                        <label class="col-md-12 col-xs-12">
+                                            <input type="checkbox" id="Is_AC_PrayingInMosqueInput">
+                                            Praying persevering
+                                        </label>
+                                        <label class="col-md-12 col-xs-12">
+                                            <input type="checkbox" id="Is_AC_QuranTimeSpecializationInput">
+                                            Quran Time Specialized
+                                        </label>
+
+                                        <label class="col-md-12 col-xs-12">
+                                            <input type="checkbox" id="Is_H_SportInput" style="border:2px solid #171615">
+                                            Sportive Activist
+                                        </label>
+                                        <label class="col-md-12 col-xs-12">
+                                            <input type="checkbox" id="Is_AC_LoveGamesInput">
+                                            Love Games
+                                        </label>
+                                        <label class="col-md-12 col-xs-12">
+                                            <input type="checkbox" id="Is_AC_LoveHargingOutInput">
+                                            Love HargingOut
+                                        </label>
+                                        <label class="col-md-12 col-xs-12">
+                                            <input type="checkbox" id="Is_H_ArtsInput">
+                                            Love Arts & Music
+                                        </label>
+                                    </div>
+                                </div>
+                                <input type="button" onclick="PriorityModal()" value="@Resource.priority" class="button-default button-default-black" />
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+
+                                    <input name="Image" type="file" id="LogoPath_image" required class="input-fields file1"
+                                           style="opacity: 0;position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 2" />
+                                    <span id="error-image" class="text-danger" hidden>
+                                    </span>
+
+                                    <div class="col-xs-12 thumbnail" id="ImagePreview" style="height:250px; display:none; border:none">
+                                        <img class="img-responsive" style="height:250px;" id="TargetImage" />
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input onclick="AddNewStudent()" type="button" class="button-default button-default-submit" value="@Resource.registerNow" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@*---------------------Priority--------------------------------*@
+<div id="PriorityModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" style="background-color:#ececec">
+
+            <div class="modal-body">
+                
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="col-12 row">
+                    <span class="col-4"></span>
+                    <span class="col-2">Low</span>
+                    <span class="col-3">Medium</span>
+                    <span class="col-3">High</span>
+                </div>
+                <div class="col-12 row">
+                    <span class="col-4">College</span>
+                    <input class="col-8" id="CollegeInput" type="range" step="1" min="1" max="3"/>
+                    <span class="col-4">Address</span>
+                    <input class="col-8" id="AddressInput" type="range" step="1" min="1" max="3" />
+                    <span class="col-4">Sleep</span>
+                    <input class="col-8" id="SleepInput" type="range" step="1" min="1" max="3" />
+                    <span class="col-4">Study</span>
+                    <input class="col-8" id="StudyInput" type="range" step="1" min="1" max="3" />
+                    <span class="col-4">Food</span>
+                    <input class="col-8" id="FoodInput" type="range" step="1" min="1" max="3" />
+                    <span class="col-4">Character</span>
+                    <input class="col-8" id="CharacterInput" type="range" step="1" min="1" max="3" />
+                    <span class="col-4">Hobby</span>
+                    <input class="col-8" id="HobbyInput" type="range" step="1" min="1" max="3" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<span id="SelectArea">@Resource.Select @Resource.Area</span>
+<span id="UploadImages" hidden>@Resource.UploadImages</span>
+<span id="ImageValidation" hidden>@Resource.ImageValidation</span>
+@section scripts
+
+    {
+    <script>
+        var ValidCount = 0;
+        var ImageInputString = "";
+        var InputsArray = new Array(25);
+        /****************************************************************************/
+        $(document).ready(function () {
+          //  $("input").css("border-color", "#0e90a5");
+            $("input").css("border-color", "red");
+            $("input:submit").css("border", "none");
+            $("input:button").css("border", "none");
+            $(".jq-checkbox").css("border-color", "red");
+            $("select").css("border-color", "red");
+           // $(".jq-selectbox__select").css("border-color", "red");
+            //$(".jq-checkbox").css("border-color", "#0e90a5");
+            //$("select").css("border-color", "#0e90a5");
+            //$(".jq-selectbox__select").css("border-color", "#0e90a5");
+            //$(".custom-file").css("background-color", "#0e90a5");
+            $(".custom-file").css("background-color", "red");
+            $(".custom-file").css("color", "#fff");
+        });
+        (function () {
+            $(".file1").wrap("<div class=\"button-default custom-file col-xs-12\" style='height:35px'></div>");
+            $(".custom-file").prepend("<span style='color:white' id='FileMessage'class = \"btn center-block\">" + $("#UploadImages").text() + "</span>");
+            $(".file1").change(function () {
+                $(".file1").prev('span').text($(".file1").val());
+            });
+        })();
+        /****************************************************************************/
+        $("#LogoPath_image").change(function () {
+
+            $("#FileMessage").text($("#UploadImages").text());
+            if ($("#LogoPath_image").val() != "") {
+                var filename = document.getElementById("LogoPath_image").value;
+                var extention = filename.substr(filename.lastIndexOf('.') + 1);
+                var validextention = ['bmp', 'gif', 'png', 'jpg', 'PNG'];
+                if ($.inArray(extention, validextention) == -1) {
+                    $("#LogoPath_image").empty();
+                    $(".custom-file").css("background-color", "red");
+                    //   $("#error-image").text($("#ImageValidation").text()).fadeIn(3000);
+                    Warning($("#ImageValidation").text());
+                    $("#ImagePreview").hide();
+
+                    return false;
+                }
+                else {
+                    var File = this.files;
+                    ReadImage(File[0]);
+                    $(".custom-file").css("background-color", "#0e90a5");
+                }
+            }
+
+        });
+        var ReadImage = function (file) {
+            var reader = new FileReader;
+            var image = new Image;
+
+            reader.readAsDataURL(file)
+            reader.onload = function (_file) {
+                image.src = _file.target.result;
+                image.onload = function () {
+                    $("#TargetImage").attr('src', image.src);
+                    $("#ImagePreview").show();
+                    $("#error-image").text("");
+                }
+            }
+            reader.onloadend = function () {
+                ImageInputString = reader.result;
+            }
+        }
+        /****************************************************************************/
+        $("#countriesDD").change(function () {
+            id = $("#countriesDD").val();
+
+            $.ajax({
+                type: "GET",
+                url: "/Account/GetArea?id=" + id,
+
+                success: function (response) {
+                    $("#areasDD").empty();
+                    $("#citiesDD").empty();
+                    $("#areasDD").append("<option value='-1'>" + $("#SelectArea").text() + "</option>");
+                    $("#citiesDD").append("<option value='-1'>" + "Select City" + "</option>");
+                    if (response != null) {
+                        Array.prototype.forEach.call(response, function (entry) {
+                            $("#areasDD").append("<option value=" + entry.id + ">" + entry.nameEn + "</option>");
+                        })
+                    }
+                    IsChoiced('areasDD', 10);
+                    IsChoiced('citiesDD', 11);
+                }
+
+            })
+
+        })
+        /***************************************************/
+        $("#areasDD").change(function () {
+            id = $("#areasDD").val();
+
+            $.ajax({
+                type: "GET",
+                url: "/Account/GetCity?id=" + id,
+
+                success: function (response) {
+                    $("#citiesDD").empty();
+                    $("#citiesDD").append("<option value='-1'>" + "Select City" + "</option>");
+                    if (response != null) {
+                        Array.prototype.forEach.call(response, function (entry) {
+                            $("#citiesDD").append("<option value=" + entry.id + ">" + entry.nameEn + "</option>");
+                        })
+                    }
+                    IsChoiced('citiesDD', 11);
+                }
+
+            })
+
+        })
+        /***************************************************/
+        $("#CollegesDD").change(function () {
+            id = $("#CollegesDD").val();
+            $.ajax({
+                type: "GET",
+                url: "/Account/GetLevel?id=" + id,
+
+                success: function (response) {
+                    $("#LevelsDD").empty();
+                    $("#LevelsDD").append("<option value='-1'>" + "Select Level" + "</option>");
+                    if (response != null) {
+                        Array.prototype.forEach.call(response, function (entry) {
+                            $("#LevelsDD").append("<option value=" + entry + ">" + entry + "</option>");
+                        })
+                    }
+                    IsChoiced('LevelsDD', 8)
+                }
+
+            })
+
+        })
+        /***************************************************/
+        function IsEmail(inputId, index) {
+
+            if (/^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#" + inputId).val())) {
+                debugger
+                $.ajax({
+                    type: "GET",
+                    url: "/Account/IsEmailUnique?email=" + $("#" + inputId).val(),
+                   
+                    success: function (response) {
+                        if (response) {
+                            Warning("This Email has aleardy account");
+                            $("#" + inputId).css("border-color", "red");
+                            InputsArray[index] = false;
+                        }
+                        else {
+                            $("#" + inputId).css("border-color", "#0e90a5");
+                            InputsArray[index] = true;
+                        }
+                    }
+
+                })
+               
+            }
+            else {
+                $("#" + inputId).css("border-color", "red");
+                // Warning("Please write litters Only");
+                InputsArray[index] = false;
+            }
+        }
+        /***************************************************/
+        function IsPassword(inputId, index) {
+            // To check a password between 6 to 20 characters which contain
+            // at least one numeric digit, one uppercase and one lowercase letter
+            var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+            if (($("#" + inputId).val()).match(passw) ) {
+                $("#" + inputId).css("border-color", "#0e90a5");
+                InputsArray[index] = true;
+            }
+            else {
+                $("#" + inputId).css("border-color", "red");
+                // Warning("Please write litters Only");
+                InputsArray[index] = false;
+            }
+        }
+        /***************************************************/
+        function allLetter(inputId, index) {
+            var letters = /^[A-Za-z]+$/;
+            if (($("#" + inputId).val()).match(letters) ) {
+                if ($("#" + inputId).val().length > 2) {
+                    $("#" + inputId).css("border-color", "#0e90a5");
+                    InputsArray[index] = true;
+                }
+                else {
+                    $("#" + inputId).css("border-color", "red");
+                    // Warning("Please write litters Only");
+                    InputsArray[index] = false;
+                }
+            }
+            else {
+                $("#" + inputId).css("border-color", "red");
+               // Warning("Please write litters Only");
+                InputsArray[index] = false;
+            }
+            }
+        /***************************************************/
+        function allNumber(inputId, index) {
+            var Numbers = /^[0-9]+$/;
+            if (($("#" + inputId).val()).match(Numbers)) {
+                if ($("#" + inputId).val().length > 8) {
+                    if (index == 2) {
+                        $.ajax({
+                            type: "GET",
+                            url: "/Account/IsSSNUnique?ssn=" + $("#" + inputId).val(),
+                            success: function (response) {
+                                if (response) {
+                                    Warning("This SSN has aleardy account");
+                                    $("#" + inputId).css("border-color", "red");
+                                    InputsArray[index] = false;
+                                }
+                                else {
+                                    $("#" + inputId).css("border-color", "#0e90a5");
+                                    InputsArray[index] = true;
+                                }
+                            }
+
+                        })
+                    }
+                    else {
+                        $("#" + inputId).css("border-color", "#0e90a5");
+                        InputsArray[index] = true;
+                    }
+
+                }
+                else {
+                    $("#" + inputId).css("border-color", "red");
+                    // Warning("Please write litters Only");
+                    InputsArray[index] = false;
+                }
+            }
+            else {
+                $("#" + inputId).css("border-color", "red");
+                // Warning("Please write litters Only");
+                InputsArray[index] = false;
+            }
+        }
+        /***************************************************/
+        function IsChoiced(inputId, index) {
+
+            if ($("#" + inputId).val()!=-1) {
+                $("#" + inputId).css("border-color", "#0e90a5");
+                InputsArray[index] = true;
+            }
+            else {
+                $("#" + inputId).css("border-color", "red");
+                // Warning("Please write litters Only");
+                InputsArray[index] = false;
+            }
+        }
+        /***************************************************/
+        function GetFormData() {
+            var ActivitiesStyleData =
+            {
+                Is_AC_LoveGames: $("#Is_AC_LoveGamesInput").val(),
+                Is_AC_LoveHargingOut: $("#Is_AC_LoveHargingOutInput").val(),
+                Is_AC_QuranTimeSpecialization: $("#Is_AC_QuranTimeSpecializationInput").val(),
+                Is_AC_PrayingInMosque: $("#Is_AC_PrayingInMosqueInput").val(),
+            };
+            var PriorityData = {
+                College: $("#CollegeInput").val(),
+                Address: $("#AddressInput").val(),
+                Sleep: $("#SleepInput").val(),
+                Study: $("#StudyInput").val(),
+                Food: $("#FoodInput").val(),
+                Character: $("#CharacterInput").val(),
+                Hobby: $("#HobbyInput").val(),
+            };
+            var CharacterStyleData =
+            {
+                Is_CH_Curcious: $("#Is_CH_CurciousInput").val(),
+                Is_CH_Social: $("#Is_CH_SocialInput").val(),
+                Is_CH_Ambitious: $("#Is_CH_AmbitiousInput").val(),
+            }
+            var cityData =
+            {
+                Id: $("#citiesDD").val(),
+            };
+            var CollegeData =
+            {
+                Id: $("#CollegesDD").val(),
+                Grade: {Id: $("#GradeInput").val() },
+                Level: $("#LevelsDD").val(),
+            };
+            var FoodStyleData =
+            {
+                Is_F_Individual: $("#Is_F_IndividualInput").val(),
+                Is_F_FastFood: $("#Is_F_FastFoodInput").val(),
+            };
+            var HobbiesStyleData =
+            {
+                Is_H_Sport: $("#Is_H_SportInput").val(),
+                Is_H_Arts: $("#Is_H_ArtsInput").val(),
+                Is_H_sociaty: $("#Is_H_sociatyInput").val(),
+                Is_H_Culture: $("#Is_H_CultureInput").val(),
+                Is_H_Religion: $("#Is_H_ReligionInput").val(),
+            };
+            var SleepStyleData =
+            {
+                Is_SL_Lightness: $("#Is_SL_LightnessInput").val(),
+                Is_SL_Noisy: $("#Is_SL_NoisyInput").val(),
+                Is_SL_Deep: $("#Is_SL_DeepInput").val(),
+                Is_SL_Night: $("#Is_SL_NightInput").val(),
+                Is_SL_Continuity: $("#Is_SL_ContinuityInput").val(),
+            };
+            var StudyStyleData =
+            {
+                Is_ST_Continuity: $("#Is_ST_ContinuityInput").val(),
+                Is_ST_Individual: $("#Is_ST_IndividualInput").val(),
+                Is_ST_AttendingCollege: $("#Is_ST_AttendingCollegeInput").val(),
+                study_way: { Id: $("#study_wayInput").val() },
+            };
+            var UserData =
+            {
+                FirstName: $("#FirstNameInput").val(),
+                LastName: $("#LastNameInput").val(),
+                HashedPassword: $("#HashedPasswordInput").val(),
+                Email: $("#EmailInput").val(),
+                SSN: $("#SSNInput").val(),
+                Mobile: $("#MobileInput").val(),
+                Image: ImageInputString,
+            }
+            var StudentData = {
+                user: UserData,
+                Sleep_Style: SleepStyleData,
+                Food_Style: FoodStyleData,
+                Study_Style: StudyStyleData,
+                Activities_Style: ActivitiesStyleData,
+                Hobbies_Style: HobbiesStyleData,
+                Character_Style: CharacterStyleData,
+                city: cityData,
+                College: CollegeData,
+                Priority: PriorityData
+            }
+            return StudentData;
+        };
+        /*******************************AddNewStudent********************/
+        function AddNewStudent() {
+            for (var i = 0; i < 26; i++)
+            {
+                if (!InputsArray[i]) {
+                    Warning("compleate Your Data ,Please.");
+                    return false;
+                }
+            }
+            
+                debugger
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/RegisterNew",
+                    data: GetFormData(),
+                    success: function (response) {
+                        if (response) {
+                            window.location.href = "/Home/Index";
+                            Success("success");
+                        }
+                        else {
+                            Warning("failed");
+                        }
+                    }
+
+                })
+            
+        };
+        /****************************************************************/
+        function PriorityModal() {
+            $("#PriorityModal").modal('show');
+        }
+    </script>
+}

@@ -1,0 +1,128 @@
+﻿@model StudentCity.DAL.Models.Permissions.DocumentModel
+@using StudentCityUI.Resources
+@{
+    ViewData["Title"] = Resource.Add+" "+Resource.Document;
+}
+
+<section class="default-section contact-part home-icon">
+    <div class="icon-default">
+        <a href="#"><img src="/images/scroll-arrow.png" alt="" /></a>
+    </div>
+    <div class="container">
+        <div class="title">
+           
+            <div class="col-sm-6">
+                <form asp-action="Add" id="add" method="post" enctype="multipart/form-data">
+                    <h2 class="text-coffee">@Resource.Add @Resource.Document</h2>
+                    <input asp-for="Captain.Id" id="CaptainId" hidden />
+                    <div class="form-group row">
+                        <label class="control-label col-xs-12">@Resource.CountOf @Resource.Orders </label>
+                        <input asp-for="OrdersCount" type="number" min="0" class="input-fields" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">@Resource.Images</label>
+                        <input type="file" name="uploads[]" multiple id="PathsOfImages" required class="input-fields file1"
+                               style="opacity: 0;position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 2" />
+                        <span id="error-image" class="col-xs-12 text-danger" hidden>
+                        </span>
+                        <div class="col-xs-12 thumbnail" id="ImagePreview" style="display:none">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" value="@Resource.save" class="button-default btn-primary-gold" id="save" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                @*<div class="col-xs-12 row">
+                    @Html.ActionLink(Resource.backTo + " " + Resource.List + " " + Resource.Documents, "Index", "Captain", null, new { @class = "tag-btn" })
+                </div>*@
+                
+            </div>
+        </div>
+    </div>
+</section>
+<span id="ImageValidation" hidden>@Resource.ImageValidation</span>
+<span id="UploadImages" hidden>@Resource.UploadImages</span>
+<span id="ImagesjpgValidation" hidden>@Resource.ImagesjpgValidation</span>
+@section scripts
+    {
+    <script>
+        var ValidCount = 0;
+        var Images = [];
+        (function () {
+            $(".file1").wrap("<div class=\"custom-file col-xs-12\" style='height:35px'></div>");
+            $(".custom-file").prepend("<span id='FileMessage'class = \"btn btn-success glyphicon glyphicon-camera\">" + $("#UploadImages").text() + "</span>");
+            $(".file1").change(function () {
+                $(".file1").prev('span').text($(".file1").val());
+            });
+        })();
+         /***************************************************************/
+        $("#PathsOfImages").change(function () {
+            if ($("#PathsOfImages").val() != "") {
+                $("#ImagePreview").empty();
+                $("#error-image").text("");
+                ValidCount = 0;
+                $("#FileMessage").text($("#UploadImages").text());
+                for (var i = 0; i < $("#PathsOfImages").get(0).files.length; i++) {
+                    var filename = $("#PathsOfImages").get(0).files[i].name;
+                    var extention = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validextention = 'jpg';
+                    if (extention != validextention) {
+                        $("#error-image").text($("#ImagesjpgValidation").text()).fadeIn(3000);
+                    }
+                    else {
+                        var File = this.files;
+                        ReadImage(File[i]);
+
+                    }
+                }
+            }
+
+        });
+        /***************************************************************/
+        var ReadImage = function (file) {
+            var reader = new FileReader;
+            var image = new Image;
+            reader.readAsDataURL(file);
+            reader.onload = function (_file) {
+                image.src = _file.target.result;
+                image.onload = function () {
+                    ValidCount += 1;
+                    $("#ImagePreview").append("<img style='height: 200px;' class='col-md-6 col-xs-12' src='" + image.src + "' class=\"img-responsive\"/>");
+                    $("#ImagePreview").show();
+                }
+            };
+            reader.onloadend = function () {
+                var ImageString = reader.result;
+                Images.push(ImageString);
+            }
+            
+        }
+        /********************************************************************************/
+        $("#save").click(function () {
+            debugger
+            if (($("#CaptainId").val() == "") || ValidCount == 0) {
+                return false;
+            }
+            else {
+                
+                var formData = new FormData();
+                var captain = {
+                    Id:$("#CaptainId").val()
+                };
+                var formData = {
+                    Captain: captain,
+                    ImagePath: Images,
+                   OrdersCount: $("#OrdersCount").val()
+                };
+                debugger
+                Post("Captain/Add", formData, function (response) {
+                    if (response != null) {
+                        alert("success");
+                    }
+                });
+            }
+        });
+    </script>
+}

@@ -1,0 +1,123 @@
+﻿@model IEnumerable<StudentCity.DAL.Models.Lookups.CityModel>
+@using StudentCityUI.Resources
+
+<section class="default-section contact-part home-icon">
+    <div class="container">
+        <a class="button-default btn-action" href="/City/Add/@ViewBag.GovernrateId">@Resource.Add @Resource.City</a>
+        @if (ViewBag.GovernrateId != 0)
+        {
+            <a class="btn btn-action" href="/Governrate/Index/@ViewBag.GovernrateId">@Resource.backTo @Resource.List @Resource.Areas</a>
+        }
+            <h1 class="head text-center">@Resource.List @Resource.Cities</h1>
+            <div class="table-responsive">
+                <table class="main-table text-center table table-bordered">
+
+                    <tr>
+                        <th>
+                           @Resource.EnglishName
+                        </th>
+                        <th>
+                            @Resource.ArabicName
+                        </th>
+                        <th>
+                            @Resource.The@Resource.Country
+                        </th>
+                        <th>
+                            @Resource.The@Resource.Area
+                        </th>
+                        <th>
+                            @Resource.control
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr id="City_@item.Id">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameEn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameAr)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Governrate.Country.NameEn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Governrate.NameEn)
+                            </td>
+                            <td>
+
+                                @Html.ActionLink(Resource.edit, "Edit", new { id = item.Id, navigate = ViewBag.GovernrateId }, new { @class = "button-default btn-primary-gold" })
+
+                                <button type="button" onclick="CityModalDelete(@item.Id)" class="button-danger">@Resource.delete</button>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </table>
+            </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" style="display:none" id="delete">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-color:#383848">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="color:#fff">@Resource.ConfirmMessage</h3>
+
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:#fff">
+                        @Resource.deleteMessage
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button-default btn-primary-gold" onclick="Delete()">@Resource.delete</button>
+                    <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<input type="hidden" id="hiddenCityId">
+@section scripts
+
+    {
+    <script>
+       
+        function hide() {
+            $("#delete").css("display", "none");
+        }
+        /****************************************************************************/
+        function CityModalDelete(CityId) {
+
+            $("#delete").css("display", "block");
+            $("#hiddenCityId").val(CityId);
+
+        }
+
+
+        /****************************************************************************/
+        function Delete() {
+            var CityId = $("#hiddenCityId").val();
+            hide();
+            $.ajax({
+                type: "POST",
+                url: "/City/delete?id=" + CityId,
+
+                success: function (response) {
+
+                    if (response) {
+                        $("#City_" + CityId).remove();
+                    }
+                    else {
+                        alert("Failed");
+                    }
+                }
+
+            })
+
+        }
+    </script>
+}

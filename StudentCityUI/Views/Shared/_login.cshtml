@@ -1,0 +1,25 @@
+﻿@using StudentCityUI.Dto
+@using StudentCityUI.Helpers
+@using StudentCityUI.Models
+@using StudentCityUI.Resources
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    CookiesManager cookiesManager = new CookiesManager(Context.Request, Context.Response);
+    string token = cookiesManager.Get("token");
+    if (token != null)
+    {
+        TokenDto dto = JsonConverter.Deserialize(token);
+<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+    @Resource.welcome : @dto.UserName
+</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/Profile"><i class="ion ion-chevron-right"></i>@Resource.profile</a></li>
+            <li><a class="dropdown-item" href="/Account/Logout"><i class="ion ion-chevron-right"></i>@Resource.logout</a></li>
+        </ul>
+
+    }
+    
+}

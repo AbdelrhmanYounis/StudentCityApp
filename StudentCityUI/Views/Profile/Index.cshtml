@@ -1,0 +1,301 @@
+﻿@model IEnumerable<StudentCity.BL.Dtos.StudentBehaviorProfile>
+@using StudentCityUI.Resources
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var studentDetails = Model.FirstOrDefault().Student;
+    string cookie = HttpContextAccessor.HttpContext.Request.Cookies["currentLanguage"];
+    var lang = "ar";
+}
+
+
+<section class="default-section contact-part home-icon">
+
+    <div class="container">
+
+        <div class="main-content col-lg-12">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <div class="card hovercard">
+                        <div class="cardheader">
+                        </div>
+                        <div class="avatar">
+                                <a href="@Html.DisplayFor(model => model.FirstOrDefault().Student.user.Image)" class="magnific-popup">
+                                    <img src="@Html.DisplayFor(model => model.FirstOrDefault().Student.user.Image)"/>
+                                   
+                                </a>
+                        </div>
+                        <div class="col-lg-12 row">
+                            <div class="title">
+                                <a>
+                                    <h7 class="head text-center">
+                                        @Html.DisplayFor(model => model.FirstOrDefault().Student.user.FirstName)
+                                        @Html.DisplayFor(model => model.FirstOrDefault().Student.user.LastName)
+                                    </h7>
+                                </a>
+                            </div>
+                            <div class="desc col-12">@Html.DisplayFor(model => model.FirstOrDefault().Student.user.Email)</div>
+                            <div class="desc col-12">@Html.DisplayFor(model => model.FirstOrDefault().Student.user.Mobile)</div>
+                            @{
+                                if (cookie != null)
+                                {
+                                    if (cookie == lang)
+                                    {
+                                        <div class="desc col-12">@Resource.Area : @Html.DisplayFor(model => model.FirstOrDefault().Student.city.Governrate.NameAr)</div>
+                                        <div class="desc col-12">@Resource.City : @Html.DisplayFor(model => model.FirstOrDefault().Student.city.NameAr)</div>
+                                        <div class="desc col-12">@Html.DisplayFor(model => model.FirstOrDefault().Student.College.NameAr)</div>
+                                        <div class="desc col-12">@Html.DisplayFor(model => model.FirstOrDefault().Student.College.Grade.NameAr)</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="desc col-12">@Resource.Area : @Html.DisplayFor(model => model.FirstOrDefault().Student.city.Governrate.NameEn)</div>
+                                        <div class="desc col-12">@Resource.City : @Html.DisplayFor(model => model.FirstOrDefault().Student.city.NameEn)</div>
+                                        <div class="desc col-12">@Html.DisplayFor(model => model.FirstOrDefault().Student.College.NameEn)</div>
+                                        <div class="desc col-12">@Html.DisplayFor(model => model.FirstOrDefault().Student.College.Grade.NameEn)</div>
+                                    }
+                                }
+                            }
+                            <div class="desc col-12">@Resource.Level @Html.DisplayFor(model => model.FirstOrDefault().Student.College.Level)</div>
+
+                            <div class="col-lg-12" onclick="keyAction()" style="margin:0 5px 0 5px" title="Click Here To Change The Lock State">
+                                @if (Model.FirstOrDefault().Student.RoomKey != 0)
+                                {
+                                    <img alt="" id="lock" src="~/images/Home/lock.png" style="height:100px" />
+                                    <img alt="" id="unlock" src="~/images/Home/unlock.png" style="height:100px;display:none" />
+                                }
+                                else
+                                {
+                                    <img alt="" id="lock" src="~/images/Home/lock.png" style="height:100px;display:none" />
+                                    <img alt="" id="unlock" src="~/images/Home/unlock.png" style="height:100px" />
+                                }
+
+
+                            </div>
+                            <div class="col-lg-2"></div>
+                                                      <div class="col-lg-8 row">
+                                                          <button type="button" onclick="detailsAction(@Model.FirstOrDefault().Student.Id)" class="btn btn-action col-lg-4">@Resource.details</button>
+                                                          <div class="col-lg-4">
+                                                              </div>
+                                                                  <button type="button" onclick="window.location.href='/Account/edit'" class="btn btn-action col-lg-4">@Resource.edit </button>
+                                                              </div>
+                                                          </div>
+
+                                                      </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="header col-md-offset-2">
+                        <h1 class="head text-center">@Resource.MyGroup</h1>
+                    </div>
+                    @{ if (Model.Count() > 1)
+                        {
+                            <div class="col-md-12">
+                                @foreach (var student in Model.Where(s => s.Student.Id != Model.FirstOrDefault().Student.Id))
+                                {
+                                    <div class="col-md-12">
+
+                                        <div class="card hovercard">
+                                            <div class="cardheader">
+                                            </div>
+                                            <div class="avatar">
+                                                <a href="@Html.DisplayFor(model => student.Student.user.Image)" class="magnific-popup">
+                                                    <img alt="" src="@Html.DisplayFor(model => student.Student.user.Image)" />
+                                                </a>
+                                            </div>
+                                            
+                                            <div class="col-lg-12">
+
+                                                <div class="title">
+                                                    <a>
+                                                        <h7 class="head text-center">
+                                                            @Html.DisplayFor(model => student.Student.user.FirstName) @Html.DisplayFor(model => student.Student.user.LastName)
+                                                        </h7>
+                                                    </a>
+                                                </div>
+                                                <ul>
+                                                    <li>
+                                                        @Html.DisplayFor(model => student.Student.user.Email)
+                                                    </li>
+                                                    <li>
+                                                        @Html.DisplayFor(model => student.Student.user.Mobile)
+                                                    </li>
+                                                    @{
+                                                        if (cookie != null)
+                                                        {
+                                                            if (cookie == lang)
+                                                            {
+                                                                <li>
+                                                                    @Resource.Area :  @Html.DisplayFor(model => student.Student.city.Governrate.NameAr)
+                                                                </li>
+                                                                <li>
+                                                                    @Resource.City :   @Html.DisplayFor(model => student.Student.city.NameAr)
+                                                                </li>
+                                                                <li>
+                                                                    @Html.DisplayFor(model => student.Student.College.NameAr)
+                                                                </li>
+
+                                                                <li>
+                                                                    @Html.DisplayFor(model => student.Student.College.Grade.NameAr)
+                                                                </li>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <li>
+                                                                    @Resource.Area :  @Html.DisplayFor(model => student.Student.city.Governrate.NameEn)
+                                                                </li>
+                                                                <li>
+                                                                    @Resource.City :   @Html.DisplayFor(model => student.Student.city.NameEn)
+                                                                </li>
+                                                                <li>
+                                                                    @Html.DisplayFor(model => student.Student.College.NameEn)
+                                                                </li>
+
+                                                                <li>
+                                                                    @Html.DisplayFor(model => student.Student.College.Grade.NameEn)
+                                                                </li>
+
+
+                                                            }
+                                                        }
+                                                    }
+                                                    <li>
+                                                        @Resource.Level @Html.DisplayFor(model => student.Student.College.Level)
+                                                    </li>
+                                                    <li>
+                                                        @if (student.Student.RoomKey != 0)
+                                                        {
+                                                            <img alt="" src="~/images/Home/unlock.png" style="height:70px" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <img alt="" src="~/images/Home/lock.png" style="height:70px" />
+                                                        }
+                                                    </li>
+                                                    <li> <button type="button" onclick="detailsAction(@student.Student.Id)" class="btn btn-action col-lg-4">@Resource.details</button></li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                }
+                                @if (Model.FirstOrDefault().Student.RoomNum == 0)
+                                {
+                                    <div class="col-md-12" style="margin-top:10px">
+                                        <button type="button" onclick="UnJionAction()" class="btn btn-action col-md-12"> @Resource.UnJion</button>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="desc col-lg-12 text-center">
+                                @Resource.NoGroup 
+                            </div>
+                        }
+                    }
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<div class="modal" tabindex="-1" id="DetailsModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:800px;color:white" id="DetailsModalBody">
+        </div>
+    </div>
+</div>
+<!-- confirm message -->
+<div class="modal" tabindex="-1" role="dialog" style="display:none" id="InvitationModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color:#383848">
+            <div class="modal-header">
+                <h3 class="modal-title" style="color:#fff">@Resource.ConfirmMessage</h3>
+
+            </div>
+            <div class="modal-body">
+                <div class="form-group col-xs-12">
+                    <h5 style="color:#fff" class="control-label" id="InvitationModalMessage"></h5>
+                </div>
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" class="button-default btn-primary-gold" onclick="InvitationAction()">@Resource.submit</button>
+                <button type="button" class="button-default" onclick="hide()">@Resource.close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+
+    {
+    <script>
+
+        /****************************************************************************/
+        function hide() {
+            $("#InvitationModal").css("display", "none");
+            $("#DetailsModal").css("display", "none");
+        }
+        /****************************************************************************/
+        function UnJionAction() {
+
+            $("#InvitationModal").css("display", "block");
+            $("#InvitationModalMessage").text("Are You Sure Do You want to Un Jion Your Group?");
+        }
+        /****************************************************************************/
+        function InvitationAction() {
+            hide();
+
+            $.ajax({
+                type: "POST",
+                url: Invitationurl = "/Student/UnJion",
+                success: function (response) {
+
+                    if (response) {
+                        Success("Success");
+                        window.location.href = "/Profile/Index";
+                    }
+                    else {
+                        Error("Error");
+                    }
+                }
+            })
+        }
+        /****************************************************************************/
+        function keyAction() {
+            $.ajax({
+                type: "POST",
+                url: "/Profile/ChangeKey",
+
+                success: function (response) {
+                    Success("Success");
+
+                    if (response == 1) {
+                        $("#lock").show();
+                        $("#unlock").hide();
+                    }
+                    else {
+                        $("#lock").hide();
+                        $("#unlock").show();
+                    }
+                }
+
+            })
+
+        }
+        /****************************************************************************/
+        function detailsAction(id) {
+               
+            var url = "/Student/detailsAction/studentId?="+id;
+            $("#DetailsModalBody").load(url, function () {
+
+                $("#DetailsModal").show();
+            })
+        }
+    </script>
+}
